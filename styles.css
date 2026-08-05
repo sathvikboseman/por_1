@@ -4,9 +4,6 @@
 .tilt-card{transform-style:preserve-3d;will-change:transform;transition:transform .5s var(--ease-out-expo)}
 .tilt-card .tilt-inner{transform:translateZ(30px);transform-style:preserve-3d}
 
-.section-wipe{position:sticky;top:0;z-index:20;height:2px;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--ember),var(--gold));box-shadow:0 0 12px oklch(58.5% .235 25.5 / 55%);transition:transform .9s var(--ease-out-expo)}
-.section-wipe.is-in{transform:scaleX(1)}
-
 .sponsor-tile{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--background);padding:1.75rem 1rem;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--smoke);isolation:isolate;transition:color .4s var(--ease-out-expo)}
 .sponsor-tile::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ember);transform:translateY(101%);transition:transform .45s var(--ease-out-expo)}
 .sponsor-tile[data-fill="gold"]::before{background:var(--gold)}
@@ -16,6 +13,5 @@
 
 @media (prefers-reduced-motion: reduce){
   .tilt-card{transition:none}
-  .section-wipe{transition:none}
   .sponsor-tile::before{transition:none}
 }
