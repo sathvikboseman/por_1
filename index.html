@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sathvik Sreeram Portfolio</title>
+<meta name="description" content="Portfolio of Sathvik Sreeram: AI automation projects, student leadership at BITS Pilani Dubai, internships, and event photography.">
+<meta name="author" content="Sathvik Sreeram">
+<meta property="og:title" content="Sathvik Sreeram — AI, Design &amp; Photography Portfolio">
+<meta property="og:description" content="AI automation projects, leadership, internships, and event photography — laid out like a race season.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+
+<div id="cursor-dot" class="pointer-events-none fixed left-0 top-0 z-[9999] size-1.5 rounded-full bg-ember opacity-0"></div>
+<div id="cursor-ring" class="pointer-events-none fixed left-0 top-0 z-[9999] size-8 rounded-full border border-ember opacity-0 transition-[width,height,border-color] duration-200"></div>
+<div class="fixed left-0 top-0 z-50 hidden h-screen w-[5px] bg-hairline md:block">
+  <div id="rail-fill" class="w-full origin-top" style="height:0;background:var(--gradient-rail);box-shadow:0 0 22px oklch(0.585 0.235 25.5 / 60%)"></div>
+  <div id="rail-dot" class="absolute -left-[7px] size-[18px] -translate-y-1/2 rounded-[3px] border border-gold bg-background" style="top:0;box-shadow:0 0 18px oklch(0.845 0.155 89 / 65%)"><div class="absolute inset-[3px] rounded-[1px] bg-gold"></div></div>
+</div>
+<header id="nav" class="fixed inset-x-0 top-0 z-40 border-b border-transparent py-6 transition-all duration-500">
+  <nav class="shell flex items-center justify-between gap-8">
+    <a href="#top" class="font-display text-sm tracking-[0.22em] text-ivory transition-colors hover:text-ember">SS<span class="text-ember">.</span></a>
+    <div class="hidden items-center gap-7 lg:flex">
+      <a href="#about" data-nav="about" class="font-mono text-[10px] uppercase tracking-[0.2em] text-smoke transition-colors hover:text-ivory">About</a><a href="#education" data-nav="education" class="font-mono text-[10px] uppercase tracking-[0.2em] text-smoke transition-colors hover:text-ivory">Education</a><a href="#experience" data-nav="experience" class="font-mono text-[10px] uppercase tracking-[0.2em] text-smoke transition-colors hover:text-ivory">Experience</a><a href="#internships" data-nav="internships" class="font-mono text-[10px] uppercase tracking-[0.2em] text-smoke transition-colors hover:text-ivory">Internships</a><a href="#projects" data-nav="projects" class="font-mono text-[10px] uppercase tracking-[0.2em] text-smoke transition-colors hover:text-ivory">Projects</a><a href="#skills" data-nav="skills" class="font-mono text-[10px] uppercase tracking-[0.2em] text-smoke transition-colors hover:text-ivory">Skills</a><a href="#photography" data-nav="photography" class="font-mono text-[10px] uppercase tracking-[0.2em] text-smoke transition-colors hover:text-ivory">Photography</a><a href="#contact" data-nav="contact" class="font-mono text-[10px] uppercase tracking-[0.2em] text-smoke transition-colors hover:text-ivory">Contact</a>
+    </div>
+    <a href="#contact" class="rounded-sm border border-hairline px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ivory transition-colors hover:border-gold hover:text-gold">Get in touch</a>
+  </nav>
+</header>
+<main class="bg-background text-foreground">
+
+<section id="top" class="grain relative flex min-h-svh flex-col items-center justify-center overflow-hidden px-[var(--gutter)] text-center">
+  <div class="hairline-grid absolute inset-0 opacity-[0.35]" aria-hidden="true"></div>
+  <canvas id="speedlines" aria-hidden="true" class="pointer-events-none absolute inset-0 size-full opacity-45"></canvas>
+  <div class="absolute inset-0" style="background:var(--gradient-halo)" aria-hidden="true"></div>
+  <div class="absolute inset-x-0 bottom-0 h-56" style="background:linear-gradient(180deg,transparent,var(--background))" aria-hidden="true"></div>
+  <span class="pointer-events-none absolute right-[5vw] top-[12vh] select-none font-mono text-[clamp(60px,9vw,140px)] font-bold text-ivory/[0.04]" aria-hidden="true">01</span>
+  <div class="relative z-10 flex flex-col items-center">
+    <div id="lights" class="mb-12 flex gap-3"><span class="light size-5 rounded-full bg-carbon-2"></span><span class="light size-5 rounded-full bg-carbon-2"></span><span class="light size-5 rounded-full bg-carbon-2"></span><span class="light size-5 rounded-full bg-carbon-2"></span><span class="light size-5 rounded-full bg-carbon-2"></span></div>
+    <h1 id="hero-name" class="ember-glow go font-display text-[clamp(56px,12vw,168px)] leading-[0.84] tracking-tight">SATHVIK<br><span class="text-ember">SREERAM</span></h1>
+    <div id="hero-rule" class="mt-7 h-[3px] bg-ember" style="width:0;box-shadow:0 0 18px oklch(0.585 0.235 25.5 / 85%);transition:width 1s var(--ease-out-expo) .5s"></div>
+    <p class="mt-6 min-h-6 font-mono text-xs uppercase tracking-[0.28em] text-gold sm:text-sm"><span id="typer"></span><span class="caret-blink ml-0.5 inline-block h-[1em] w-0.5 translate-y-0.5 bg-gold"></span></p>
+    <p class="go mt-6 max-w-2xl text-base text-smoke sm:text-lg" style="transition-delay:200ms">This is everywhere the work has taken me so far, laid out like a race season, sector by sector.</p>
+    <div class="go mt-11 flex flex-wrap items-center justify-center gap-3" style="transition-delay:360ms">
+      <a href="#about" class="group relative overflow-hidden rounded-sm bg-ember px-8 py-4 font-display text-xs uppercase tracking-[0.16em] text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5" style="box-shadow:var(--shadow-ember)"><span class="relative z-10">See everything</span></a>
+      <a href="/cv.pdf" download="Sathvik_Sreeram_CV.pdf" class="rounded-sm border border-hairline px-8 py-4 font-display text-xs uppercase tracking-[0.16em] text-ivory transition-colors duration-300 hover:border-gold hover:text-gold">Download CV</a>
+      <a href="https://www.linkedin.com/in/sathvik-sreeram-06b350280" target="_blank" rel="noreferrer" class="rounded-sm border border-hairline px-8 py-4 font-display text-xs uppercase tracking-[0.16em] text-ivory transition-colors duration-300 hover:border-gold hover:text-gold">LinkedIn</a>
+    </div>
+  </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-smoke">Scroll — lap 1 of 8</div>
+</section>
+
+<div class="grid grid-cols-2 gap-px border-y border-hairline bg-hairline md:grid-cols-4">
+  <div class="group bg-background px-6 py-14 text-center"><div class="reveal " style="transition-delay:0ms"><div class="font-mono text-[clamp(30px,4.5vw,52px)] font-bold leading-none text-gold transition-colors duration-300 group-hover:text-ember">02</div>
+         <div class="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke">Internships</div></div></div><div class="group bg-background px-6 py-14 text-center"><div class="reveal " style="transition-delay:80ms"><div class="font-mono text-[clamp(30px,4.5vw,52px)] font-bold leading-none text-gold transition-colors duration-300 group-hover:text-ember">06</div>
+         <div class="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke">Leadership roles</div></div></div><div class="group bg-background px-6 py-14 text-center"><div class="reveal " style="transition-delay:160ms"><div class="font-mono text-[clamp(30px,4.5vw,52px)] font-bold leading-none text-gold transition-colors duration-300 group-hover:text-ember">09</div>
+         <div class="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke">Certifications</div></div></div><div class="group bg-background px-6 py-14 text-center"><div class="reveal " style="transition-delay:240ms"><div class="font-mono text-[clamp(30px,4.5vw,52px)] font-bold leading-none text-gold transition-colors duration-300 group-hover:text-ember">04</div>
+         <div class="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke">Languages spoken</div></div></div>
+</div>
+<section id="about" class="grain relative scroll-mt-24 py-[var(--section-y)] bg-background"><div class="shell relative"><div class="reveal " style="transition-delay:0ms"><div class="flex items-start justify-between gap-10">
+    <div>
+      <div class="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-ember"><span class="h-px w-7 bg-ember"></span>Driver profile</div>
+      <h2 class="underline-sweep mt-5 inline-block font-display text-[clamp(34px,6vw,72px)] leading-[0.92]">About me</h2>
+      
+    </div>
+    <span class="hidden select-none font-mono text-[clamp(40px,5vw,84px)] font-bold text-ivory/[0.05] md:block" aria-hidden="true">02</span>
+  </div></div>
+  <div class="mt-16 grid gap-14 lg:grid-cols-[1.15fr_1fr] lg:items-start lg:gap-20">
+    <div class="reveal grid grid-cols-2 gap-4" style="transition-delay:0ms"><img src="/images/img-001.jpeg" alt="Sathvik Sreeram" loading="lazy" class="aspect-3/4 w-full rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:grayscale-0 "><img src="/images/img-002.jpeg" alt="Sathvik Sreeram" loading="lazy" class="aspect-3/4 w-full rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:grayscale-0 lg:translate-y-8"><img src="/images/img-003.jpeg" alt="Sathvik Sreeram" loading="lazy" class="aspect-3/4 w-full rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:grayscale-0 "><img src="/images/img-004.jpeg" alt="Sathvik Sreeram" loading="lazy" class="aspect-3/4 w-full rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:grayscale-0 lg:translate-y-8"></div>
+    <div class="reveal space-y-7" style="transition-delay:120ms"><p class="text-[17px] leading-[1.85] text-smoke">Results-driven Computer Science Engineering student with hands-on experience in cybersecurity, creative design, and AI/ML. Proven leader across multiple university bodies — from Media Head to President of the campus Media House — with a track record of delivering high-impact events, visual campaigns, and digital communications.</p><p class="text-[17px] leading-[1.85] text-smoke">Currently interning at MSD (Merck &amp; Co., Inc.) as a Creative Designer, translating business requirements into compelling digital assets. Passionate about the intersection of technology, design, and storytelling, while pursuing creative and competitive interests through photography, music, football, and Formula 1, which inspire innovation, discipline, and continuous learning.</p>
+       <div class="flex flex-wrap gap-2.5 pt-2"><span class="whitespace-nowrap rounded-sm border border-hairline px-3.5 py-2 font-mono text-[11px] uppercase leading-none tracking-[0.14em] text-smoke">Cybersecurity</span><span class="whitespace-nowrap rounded-sm border border-hairline px-3.5 py-2 font-mono text-[11px] uppercase leading-none tracking-[0.14em] text-smoke">AI / ML</span><span class="whitespace-nowrap rounded-sm border border-hairline px-3.5 py-2 font-mono text-[11px] uppercase leading-none tracking-[0.14em] text-smoke">Creative direction</span><span class="whitespace-nowrap rounded-sm border border-hairline px-3.5 py-2 font-mono text-[11px] uppercase leading-none tracking-[0.14em] text-smoke">Photography</span><span class="whitespace-nowrap rounded-sm border border-hairline px-3.5 py-2 font-mono text-[11px] uppercase leading-none tracking-[0.14em] text-smoke">Formula 1</span></div></div>
+  </div></div></section>
+<section id="education" class="grain relative scroll-mt-24 py-[var(--section-y)] bg-carbon"><div class="shell relative"><div class="reveal " style="transition-delay:0ms"><div class="flex items-start justify-between gap-10">
+    <div>
+      <div class="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-ember"><span class="h-px w-7 bg-ember"></span>Formation laps</div>
+      <h2 class="underline-sweep mt-5 inline-block font-display text-[clamp(34px,6vw,72px)] leading-[0.92]">Education</h2>
+      
+    </div>
+    <span class="hidden select-none font-mono text-[clamp(40px,5vw,84px)] font-bold text-ivory/[0.05] md:block" aria-hidden="true">03</span>
+  </div></div>
+  <div class="relative mt-16 border-l border-hairline pl-8 md:pl-14">
+    <div class="reveal pb-8 last:pb-0" style="transition-delay:0ms"><div class="group relative">
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">E1</span>
+            <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-ember/40" aria-hidden="true"></span>
+            <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
+              <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
+                <div class="flex md:block">
+                  <span class="inline-block whitespace-nowrap rounded-sm border px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.16em] border-ember/40 text-ember">2022 — 2026</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-2xl leading-tight md:text-3xl">BITS Pilani, Dubai Campus</h3>
+                  <p class="mt-2.5 text-sm font-semibold leading-relaxed text-smoke">B.E. Computer Science Engineering — AI/ML/DBMS/DSA</p>
+                  
+                  <span class="mt-6 inline-block whitespace-nowrap rounded-sm border border-hairline px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.14em] text-smoke">CSE · AI/ML</span>
+                </div>
+              </div>
+            </article>
+          </div></div><div class="reveal pb-8 last:pb-0" style="transition-delay:60ms"><div class="group relative">
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">E2</span>
+            <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-ember/40" aria-hidden="true"></span>
+            <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
+              <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
+                <div class="flex md:block">
+                  <span class="inline-block whitespace-nowrap rounded-sm border px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.16em] border-ember/40 text-ember">2019 — 2021</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-2xl leading-tight md:text-3xl">Narayana Junior College</h3>
+                  <p class="mt-2.5 text-sm font-semibold leading-relaxed text-smoke">Higher Secondary (Science) — Physics, Chemistry, Mathematics</p>
+                  <p class="mt-5 max-w-2xl text-[15px] leading-[1.8] text-smoke">97% across Grades 11 and 12.</p>
+                  <span class="mt-6 inline-block whitespace-nowrap rounded-sm border border-hairline px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.14em] text-smoke">Science stream</span>
+                </div>
+              </div>
+            </article>
+          </div></div><div class="reveal pb-8 last:pb-0" style="transition-delay:120ms"><div class="group relative">
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">E3</span>
+            <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-ember/40" aria-hidden="true"></span>
+            <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
+              <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
+                <div class="flex md:block">
+                  <span class="inline-block whitespace-nowrap rounded-sm border px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.16em] border-ember/40 text-ember">Until 2019</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-2xl leading-tight md:text-3xl">Indian High School</h3>
+                  <p class="mt-2.5 text-sm font-semibold leading-relaxed text-smoke">Secondary Education</p>
+                  <p class="mt-5 max-w-2xl text-[15px] leading-[1.8] text-smoke">90% scored in Grade 10 CBSE.</p>
+                  
+                  <span class="mt-6 inline-block whitespace-nowrap rounded-sm border border-hairline px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.14em] text-smoke">Dubai, UAE</span>
+                </div>
+              </div>
+            </article>
+          </div></div>
+  </div></div></section>
+<section id="experience" class="grain relative scroll-mt-24 py-[var(--section-y)] bg-background"><div class="shell relative"><div class="reveal " style="transition-delay:0ms"><div class="flex items-start justify-between gap-10">
+    <div>
+      <div class="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-ember"><span class="h-px w-7 bg-ember"></span>Off-track results</div>
+      <h2 class="underline-sweep mt-5 inline-block font-display text-[clamp(34px,6vw,72px)] leading-[0.92]">Experience</h2>
+      <p class="mt-6 max-w-xl text-smoke">Leadership across BITS Pilani's student bodies — the events, campaigns, and teams run alongside coursework.</p>
+    </div>
+    <span class="hidden select-none font-mono text-[clamp(40px,5vw,84px)] font-bold text-ivory/[0.05] md:block" aria-hidden="true">04</span>
+  </div></div>
+  <div class="relative mt-16 border-l border-hairline pl-8 md:pl-14">
+    <div class="reveal pb-8 last:pb-0" style="transition-delay:0ms"><div class="group relative">
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L1</span>
+            <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-ember/40" aria-hidden="true"></span>
+            <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
+              <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
+                <div class="flex md:block">
+                  <span class="inline-block whitespace-nowrap rounded-sm border px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.16em] border-ember/40 text-ember">2025 — 2026</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-2xl leading-tight md:text-3xl">President</h3>
+                  <p class="mt-2.5 text-sm font-semibold leading-relaxed text-smoke">Reflexions — Official Media House, BITS Pilani Dubai</p>
+                  
+                  
+                </div>
+              </div>
+            </article>
+          </div></div><div class="reveal pb-8 last:pb-0" style="transition-delay:60ms"><div class="group relative">
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L2</span>
+            <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-ember/40" aria-hidden="true"></span>
+            <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
+              <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
+                <div class="flex md:block">
+                  <span class="inline-block whitespace-nowrap rounded-sm border px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.16em] border-ember/40 text-ember">2025 — 2026</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-2xl leading-tight md:text-3xl">Media Head</h3>
+                  <p class="mt-2.5 text-sm font-semibold leading-relaxed text-smoke">Microsoft Tech Club, BITS Pilani Dubai</p>
+                  
+                  
+                </div>
+              </div>
+            </article>
+          </div></div><div class="reveal pb-8 last:pb-0" style="transition-delay:120ms"><div class="group relative">
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L3</span>
+            <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-ember/40" aria-hidden="true"></span>
+            <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
+              <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
+                <div class="flex md:block">
+                  <span class="inline-block whitespace-nowrap rounded-sm border px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.16em] border-ember/40 text-ember">2024 — 2025</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-2xl leading-tight md:text-3xl">Marketing Head</h3>
+                  <p class="mt-2.5 text-sm font-semibold leading-relaxed text-smoke">Microsoft Tech Club, BITS Pilani Dubai</p>
+                  
+                  
+                </div>
+              </div>
+            </article>
+          </div></div><div class="reveal pb-8 last:pb-0" style="transition-delay:180ms"><div class="group relative">
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L4</span>
+            <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-ember/40" aria-hidden="true"></span>
+            <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
+              <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
+                <div class="flex md:block">
+                  <span class="inline-block whitespace-nowrap rounded-sm border px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.16em] border-ember/40 text-ember">2026</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-2xl leading-tight md:text-3xl">Media Head</h3>
+                  <p class="mt-2.5 text-sm font-semibold leading-relaxed text-smoke">Jashn — Annual Cultural Festival (2,000+ attendees)</p>
+                  
+                  
+                </div>
+              </div>
+            </article>
+          </div></div><div class="reveal pb-8 last:pb-0" style="transition-delay:240ms"><div class="group relative">
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L5</span>
+            <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-ember/40" aria-hidden="true"></span>
+            <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
+              <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
+                <div class="flex md:block">
+                  <span class="inline-block whitespace-nowrap rounded-sm border px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.16em] border-ember/40 text-ember">2025</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-2xl leading-tight md:text-3xl">Digital &amp; Creative Co-Head</h3>
+                  <p class="mt-2.5 text-sm font-semibold leading-relaxed text-smoke">Jashn — Annual Cultural Festival</p>
+                  
+                  
+                </div>
+              </div>
+            </article>
+          </div></div><div class="reveal pb-8 last:pb-0" style="transition-delay:300ms"><div class="group relative">
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L6</span>
+            <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-ember/40" aria-hidden="true"></span>
+            <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
+              <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
+                <div class="flex md:block">
+                  <span class="inline-block whitespace-nowrap rounded-sm border px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.16em] border-ember/40 text-ember">2025</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-2xl leading-tight md:text-3xl">Media Head</h3>
+                  <p class="mt-2.5 text-sm font-semibold leading-relaxed text-smoke">BITS Sports Festival</p>
+                  
+                  
+                </div>
+              </div>
+            </article>
+          </div></div>
+  </div></div></section>
+<section id="internships" class="grain relative scroll-mt-24 py-[var(--section-y)] bg-carbon"><div class="shell relative"><div class="reveal " style="transition-delay:0ms"><div class="flex items-start justify-between gap-10">
+    <div>
+      <div class="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-ember"><span class="h-px w-7 bg-ember"></span>Race seats</div>
+      <h2 class="underline-sweep mt-5 inline-block font-display text-[clamp(34px,6vw,72px)] leading-[0.92]">Internships</h2>
+      
+    </div>
+    <span class="hidden select-none font-mono text-[clamp(40px,5vw,84px)] font-bold text-ivory/[0.05] md:block" aria-hidden="true">05</span>
+  </div></div>
+  <div class="relative mt-16 border-l border-hairline pl-8 md:pl-14">
+    <div class="reveal pb-8 last:pb-0" style="transition-delay:0ms"><div class="group relative">
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-gold text-gold group-hover:shadow-[0_0_24px_oklch(0.845_0.155_89/45%)]">I1</span>
+            <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-gold/40" aria-hidden="true"></span>
+            <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
+              <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
+                <div class="flex md:block">
+                  <span class="inline-block whitespace-nowrap rounded-sm border px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.16em] border-gold/40 text-gold">Present</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-2xl leading-tight md:text-3xl">MSD (Merck &amp; Co., Inc.)</h3>
+                  <p class="mt-2.5 text-sm font-semibold leading-relaxed text-smoke">Dubai — Gulf marketing &amp; digital communications team</p>
+                  <p class="mt-5 max-w-2xl text-[15px] leading-[1.8] text-smoke">Designed and shipped a production tool that converts raw agenda files (.docx, .xlsx, .csv, .txt) into fully branded, deployment-ready HTML emailers. Built the client-side file parsing pipeline with intelligent time-range detection, speaker extraction, and row normalisation, so messy real-world files need no manual cleanup. Added a real-time live preview with full typography and colour theming, pixel-level logo trimming via canvas manipulation, and banner overlay compositing. Also delivered campaigns across emailers, flyers, decks, and social graphics, keeping brand compliance consistent across all MSD Gulf communications.</p>
+                  <span class="mt-6 inline-block whitespace-nowrap rounded-sm border border-hairline px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.14em] text-smoke">Marketing &amp; communications</span>
+                </div>
+              </div>
+            </article>
+          </div></div><div class="reveal pb-8 last:pb-0" style="transition-delay:60ms"><div class="group relative">
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-gold text-gold group-hover:shadow-[0_0_24px_oklch(0.845_0.155_89/45%)]">I2</span>
+            <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-gold/40" aria-hidden="true"></span>
+            <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
+              <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
+                <div class="flex md:block">
+                  <span class="inline-block whitespace-nowrap rounded-sm border px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.16em] border-gold/40 text-gold">Jun — Aug 2024</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-2xl leading-tight md:text-3xl">Mashreq Bank</h3>
+                  <p class="mt-2.5 text-sm font-semibold leading-relaxed text-smoke">Dubai — security operations &amp; infrastructure</p>
+                  <p class="mt-5 max-w-2xl text-[15px] leading-[1.8] text-smoke">Conducted vulnerability assessments across banking infrastructure and documented findings with remediation recommendations under the NIST CSF 2.0 framework. Contributed to automated security monitoring tooling used by the security operations team.</p>
+                  <span class="mt-6 inline-block whitespace-nowrap rounded-sm border border-hairline px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.14em] text-smoke">Security operations</span>
+                </div>
+              </div>
+            </article>
+          </div></div>
+  </div></div></section>
+<section id="projects" class="grain relative scroll-mt-24 py-[var(--section-y)] bg-background"><div class="shell relative"><div class="reveal " style="transition-delay:0ms"><div class="flex items-start justify-between gap-10">
+    <div>
+      <div class="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-ember"><span class="h-px w-7 bg-ember"></span>Race results</div>
+      <h2 class="underline-sweep mt-5 inline-block font-display text-[clamp(34px,6vw,72px)] leading-[0.92]">Projects</h2>
+      
+    </div>
+    <span class="hidden select-none font-mono text-[clamp(40px,5vw,84px)] font-bold text-ivory/[0.05] md:block" aria-hidden="true">06</span>
+  </div></div>
+  <div class="mt-16 grid gap-6 lg:grid-cols-2">
+    <div class="reveal h-full" style="transition-delay:0ms"><article class="surface-card group flex h-full flex-col p-8 hover:-translate-y-1.5 hover:border-ember/50 md:p-10">
+            <span class="pointer-events-none absolute right-6 top-1 select-none font-mono text-[80px] font-bold leading-none text-ivory/[0.045]" aria-hidden="true">01</span>
+            <div class="font-mono text-[11px] uppercase tracking-[0.2em] text-gold">2025 · Live</div>
+            <h3 class="mt-5 font-display text-2xl leading-tight md:text-3xl">AI-Powered Emailer &amp; Agenda Automation Platform</h3>
+            <p class="mt-5 text-[15px] leading-[1.8] text-smoke">Marketing teams were manually reformatting agendas and rebuilding email templates for every event across five Gulf markets — hours of repetitive work per campaign. Built a full automation tool instead: upload a raw file in any format, and the system parses it, detects time ranges and speaker blocks, and generates a live-previewed, pixel-perfect branded emailer ready for Salesforce deployment.</p>
+            <div class="mt-auto flex flex-wrap gap-2 pt-8"><span class="whitespace-nowrap rounded-sm border border-hairline bg-background/40 px-3 py-1.5 font-mono text-[10px] uppercase leading-none tracking-[0.14em] text-smoke">SheetJS</span><span class="whitespace-nowrap rounded-sm border border-hairline bg-background/40 px-3 py-1.5 font-mono text-[10px] uppercase leading-none tracking-[0.14em] text-smoke">Mammoth.js</span><span class="whitespace-nowrap rounded-sm border border-hairline bg-background/40 px-3 py-1.5 font-mono text-[10px] uppercase leading-none tracking-[0.14em] text-smoke">Canvas API</span><span class="whitespace-nowrap rounded-sm border border-hairline bg-background/40 px-3 py-1.5 font-mono text-[10px] uppercase leading-none tracking-[0.14em] text-smoke">Salesforce MCloud</span><span class="whitespace-nowrap rounded-sm border border-hairline bg-background/40 px-3 py-1.5 font-mono text-[10px] uppercase leading-none tracking-[0.14em] text-smoke">Regex/NLP</span></div>
+          </article></div><div class="reveal h-full" style="transition-delay:100ms"><article class="surface-card group flex h-full flex-col p-8 hover:-translate-y-1.5 hover:border-ember/50 md:p-10">
+            <span class="pointer-events-none absolute right-6 top-1 select-none font-mono text-[80px] font-bold leading-none text-ivory/[0.045]" aria-hidden="true">02</span>
+            <div class="font-mono text-[11px] uppercase tracking-[0.2em] text-gold">2024</div>
+            <h3 class="mt-5 font-display text-2xl leading-tight md:text-3xl">Chess Game Outcome Prediction</h3>
+            <p class="mt-5 text-[15px] leading-[1.8] text-smoke">An ML pipeline predicting game outcomes from move sequences and player behavioural data — covering the full lifecycle from raw data ingestion and feature extraction from game notation through to model selection, evaluation, and visualisation.</p>
+            <div class="mt-auto flex flex-wrap gap-2 pt-8"><span class="whitespace-nowrap rounded-sm border border-hairline bg-background/40 px-3 py-1.5 font-mono text-[10px] uppercase leading-none tracking-[0.14em] text-smoke">Python</span><span class="whitespace-nowrap rounded-sm border border-hairline bg-background/40 px-3 py-1.5 font-mono text-[10px] uppercase leading-none tracking-[0.14em] text-smoke">scikit-learn</span><span class="whitespace-nowrap rounded-sm border border-hairline bg-background/40 px-3 py-1.5 font-mono text-[10px] uppercase leading-none tracking-[0.14em] text-smoke">pandas</span><span class="whitespace-nowrap rounded-sm border border-hairline bg-background/40 px-3 py-1.5 font-mono text-[10px] uppercase leading-none tracking-[0.14em] text-smoke">Feature Engineering</span></div>
+          </article></div>
+  </div></div></section>
+<section id="certifications" class="grain relative scroll-mt-24 py-[var(--section-y)] bg-carbon"><div class="shell relative"><div class="reveal " style="transition-delay:0ms"><div class="flex items-start justify-between gap-10">
+    <div>
+      <div class="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-ember"><span class="h-px w-7 bg-ember"></span>Pit stops</div>
+      <h2 class="underline-sweep mt-5 inline-block font-display text-[clamp(34px,6vw,72px)] leading-[0.92]">Certifications</h2>
+      
+    </div>
+    <span class="hidden select-none font-mono text-[clamp(40px,5vw,84px)] font-bold text-ivory/[0.05] md:block" aria-hidden="true">07</span>
+  </div></div>
+  <div class="mt-14 overflow-hidden rounded-sm border border-hairline">
+    <div class="reveal " style="transition-delay:0ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">Jul 2026</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">Microsoft Azure Essentials Professional Certificate — Microsoft / LinkedIn</div>
+          </div></div><div class="reveal " style="transition-delay:40ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">Jul 2026</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">Azure AI Essentials: Workloads &amp; ML on Azure — LinkedIn</div>
+          </div></div><div class="reveal " style="transition-delay:80ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">Jul 2026</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">Microsoft Azure Essentials — Microsoft Press / LinkedIn</div>
+          </div></div><div class="reveal " style="transition-delay:120ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">Jul 2026</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">Your Top AI Questions Answered: AI Literacy for Everyone — LinkedIn</div>
+          </div></div><div class="reveal " style="transition-delay:160ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">Jul 2026</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">Cybersecurity Awareness: Terminology — LinkedIn</div>
+          </div></div><div class="reveal " style="transition-delay:200ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">2025</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">AI Agents: Automation &amp; Business with LangChain &amp; LLM Apps — Udemy</div>
+          </div></div><div class="reveal " style="transition-delay:240ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">2025</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">AI Agentic Design Patterns with Ollama &amp; OpenAI — Udemy</div>
+          </div></div>
+  </div></div></section>
+<section id="skills" class="grain relative scroll-mt-24 py-[var(--section-y)] bg-background"><div class="shell relative"><div class="reveal " style="transition-delay:0ms"><div class="flex items-start justify-between gap-10">
+    <div>
+      <div class="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-ember"><span class="h-px w-7 bg-ember"></span>Setup sheet</div>
+      <h2 class="underline-sweep mt-5 inline-block font-display text-[clamp(34px,6vw,72px)] leading-[0.92]">Skills</h2>
+      
+    </div>
+    <span class="hidden select-none font-mono text-[clamp(40px,5vw,84px)] font-bold text-ivory/[0.05] md:block" aria-hidden="true">08</span>
+  </div></div>
+  <div class="mt-14 overflow-hidden rounded-sm border border-hairline">
+    <div class="reveal " style="transition-delay:0ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">Automation &amp; Build</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">Client-side file parsing (Excel, Word, CSV), real-time UI rendering, canvas image processing, NLP document extraction</div>
+          </div></div><div class="reveal " style="transition-delay:40ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">AI / LLM</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">OpenAI API, prompt engineering, LangChain, agentic design patterns, local LLM deployment (Ollama), RAG architecture</div>
+          </div></div><div class="reveal " style="transition-delay:80ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">Cloud &amp; Security</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">Microsoft Azure (AI Foundry, ML, Cloud), Microsoft Security, NIST CSF 1.0 &amp; 2.0, vulnerability assessment</div>
+          </div></div><div class="reveal " style="transition-delay:120ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">Languages &amp; Frameworks</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">Python, JavaScript, HTML/CSS, Java, C, MATLAB, MIPS Assembly</div>
+          </div></div><div class="reveal " style="transition-delay:160ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">Data &amp; ML</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">scikit-learn, pandas, NumPy, feature engineering, model evaluation</div>
+          </div></div><div class="reveal " style="transition-delay:200ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">Dev Tools</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">Git, VS Code, Jupyter, Linux/Unix, Docker</div>
+          </div></div><div class="reveal " style="transition-delay:240ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">Design &amp; Creative</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">Salesforce Marketing Cloud, Adobe Premiere Pro, Lightroom, event photography, campaign design</div>
+          </div></div><div class="reveal " style="transition-delay:280ms"><div class="group grid grid-cols-1 items-baseline gap-2 border-b border-hairline px-5 py-6 transition-colors duration-300 last:border-b-0 hover:bg-carbon-2/60 md:grid-cols-[minmax(190px,240px)_1fr] md:gap-10 md:px-8">
+            <div class="font-mono text-[11px] uppercase leading-none tracking-[0.18em] text-gold">Languages Spoken</div>
+            <div class="text-[15px] leading-[1.8] text-smoke transition-colors group-hover:text-ivory">English &amp; Hindi (fluent), Telugu (native), Arabic (conversational)</div>
+          </div></div>
+  </div></div></section>
+<section id="photography" class="grain relative scroll-mt-24 py-[var(--section-y)] bg-carbon"><div class="shell relative"><div class="reveal " style="transition-delay:0ms"><div class="flex items-start justify-between gap-10">
+    <div>
+      <div class="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-ember"><span class="h-px w-7 bg-ember"></span>Paddock pass</div>
+      <h2 class="underline-sweep mt-5 inline-block font-display text-[clamp(34px,6vw,72px)] leading-[0.92]">Photography</h2>
+      <p class="mt-6 max-w-xl text-smoke">Event, festival, and sports coverage shot across campus and Dubai.</p>
+    </div>
+    <span class="hidden select-none font-mono text-[clamp(40px,5vw,84px)] font-bold text-ivory/[0.05] md:block" aria-hidden="true">09</span>
+  </div></div>
+  <div class="reveal " style="transition-delay:0ms"><button id="shots-toggle" class="mt-12 inline-flex items-center gap-2.5 rounded-sm border border-hairline px-5 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-ivory transition-colors duration-300 hover:border-gold hover:text-gold"><span id="shots-label">Show all shots</span><span id="shots-caret" class="inline-block text-[10px] transition-transform duration-300">▾</span></button></div>
+  <div id="shots-panel" class="overflow-hidden transition-[max-height,margin-top,opacity] duration-700" style="max-height:0;margin-top:0;opacity:0;transition-timing-function:var(--ease-out-expo)">
+    <div class="marquee-mask overflow-hidden">
+      <div class="marquee-track gap-4 hover:[animation-play-state:paused]">
+        <img src="/images/img-005.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-006.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-007.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-008.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-009.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-010.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-011.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-012.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-013.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-014.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-015.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-016.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-017.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-018.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-019.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-020.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-021.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-022.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-023.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-024.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-025.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-026.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-027.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-028.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-029.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-030.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-031.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-032.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-033.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-034.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-035.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-036.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-037.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-038.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-039.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-040.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-041.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-042.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-043.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-044.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-045.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-046.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-047.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-048.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-049.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-050.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-051.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-052.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-053.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-054.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-055.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-056.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-057.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-058.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-059.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-060.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-061.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-062.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-063.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0"><img src="/images/img-064.jpeg" alt="Event photography by Sathvik Sreeram" loading="lazy" class="h-[300px] w-[220px] shrink-0 rounded-sm border border-hairline object-cover grayscale transition-all duration-500 hover:scale-[1.03] hover:grayscale-0">
+      </div>
+    </div>
+  </div>
+  <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="reveal h-full" style="transition-delay:0ms"><a href="https://www.instagram.com/reel/Cxz5WLYvjj3/" target="_blank" rel="noreferrer" class="surface-card group flex h-full flex-col hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-[var(--shadow-gold)]">
+            <div class="relative aspect-4/5 overflow-hidden">
+              <img src="/images/img-065.jpeg" alt="“wanna drive around all night with no plans?”" loading="lazy" class="size-full object-cover transition-transform duration-700 group-hover:scale-105">
+              <span class="absolute inset-0" style="background:linear-gradient(180deg,transparent 45%,oklch(14.5% 0.006 285 / 92%))"></span>
+              <span class="absolute bottom-4 left-4 rounded-sm border border-gold/50 bg-background/70 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-gold backdrop-blur-sm">42.4K views</span>
+            </div>
+            <div class="p-6"><p class="text-[15px] leading-relaxed text-smoke transition-colors group-hover:text-ivory">“wanna drive around all night with no plans?”</p></div>
+          </a></div><div class="reveal h-full" style="transition-delay:70ms"><a href="https://www.instagram.com/reel/C2ZryhnNmjJ/" target="_blank" rel="noreferrer" class="surface-card group flex h-full flex-col hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-[var(--shadow-gold)]">
+            <div class="relative aspect-4/5 overflow-hidden">
+              <img src="/images/img-066.jpeg" alt="It's The Grand Picnic 2024" loading="lazy" class="size-full object-cover transition-transform duration-700 group-hover:scale-105">
+              <span class="absolute inset-0" style="background:linear-gradient(180deg,transparent 45%,oklch(14.5% 0.006 285 / 92%))"></span>
+              <span class="absolute bottom-4 left-4 rounded-sm border border-gold/50 bg-background/70 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-gold backdrop-blur-sm">26K views</span>
+            </div>
+            <div class="p-6"><p class="text-[15px] leading-relaxed text-smoke transition-colors group-hover:text-ivory">It's The Grand Picnic 2024</p></div>
+          </a></div><div class="reveal h-full" style="transition-delay:140ms"><a href="https://www.instagram.com/reel/DQtR_77D9Oi/" target="_blank" rel="noreferrer" class="surface-card group flex h-full flex-col hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-[var(--shadow-gold)]">
+            <div class="relative aspect-4/5 overflow-hidden">
+              <img src="/images/img-067.jpeg" alt="BITS Sports Festival 2025 Trailer" loading="lazy" class="size-full object-cover transition-transform duration-700 group-hover:scale-105">
+              <span class="absolute inset-0" style="background:linear-gradient(180deg,transparent 45%,oklch(14.5% 0.006 285 / 92%))"></span>
+              <span class="absolute bottom-4 left-4 rounded-sm border border-gold/50 bg-background/70 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-gold backdrop-blur-sm">23.5K views</span>
+            </div>
+            <div class="p-6"><p class="text-[15px] leading-relaxed text-smoke transition-colors group-hover:text-ivory">BITS Sports Festival 2025 Trailer</p></div>
+          </a></div><div class="reveal h-full" style="transition-delay:210ms"><a href="https://www.instagram.com/reel/DI3KxufzVYr/" target="_blank" rel="noreferrer" class="surface-card group flex h-full flex-col hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-[var(--shadow-gold)]">
+            <div class="relative aspect-4/5 overflow-hidden">
+              <img src="/images/img-068.jpeg" alt="DJ Jeff at Jashn '25" loading="lazy" class="size-full object-cover transition-transform duration-700 group-hover:scale-105">
+              <span class="absolute inset-0" style="background:linear-gradient(180deg,transparent 45%,oklch(14.5% 0.006 285 / 92%))"></span>
+              <span class="absolute bottom-4 left-4 rounded-sm border border-gold/50 bg-background/70 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-gold backdrop-blur-sm">20K views</span>
+            </div>
+            <div class="p-6"><p class="text-[15px] leading-relaxed text-smoke transition-colors group-hover:text-ivory">DJ Jeff at Jashn '25</p></div>
+          </a></div><div class="reveal h-full" style="transition-delay:280ms"><a href="https://www.instagram.com/reel/DDXe-6xThkY/" target="_blank" rel="noreferrer" class="surface-card group flex h-full flex-col hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-[var(--shadow-gold)]">
+            <div class="relative aspect-4/5 overflow-hidden">
+              <img src="/images/img-069.jpeg" alt="BSF 2024 Edit" loading="lazy" class="size-full object-cover transition-transform duration-700 group-hover:scale-105">
+              <span class="absolute inset-0" style="background:linear-gradient(180deg,transparent 45%,oklch(14.5% 0.006 285 / 92%))"></span>
+              <span class="absolute bottom-4 left-4 rounded-sm border border-gold/50 bg-background/70 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-gold backdrop-blur-sm">17.3K views</span>
+            </div>
+            <div class="p-6"><p class="text-[15px] leading-relaxed text-smoke transition-colors group-hover:text-ivory">BSF 2024 Edit</p></div>
+          </a></div><div class="reveal h-full" style="transition-delay:350ms"><a href="https://www.instagram.com/reel/DEui4cnz66Z/" target="_blank" rel="noreferrer" class="surface-card group flex h-full flex-col hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-[var(--shadow-gold)]">
+            <div class="relative aspect-4/5 overflow-hidden">
+              <img src="/images/img-070.jpeg" alt="Coldplay '25 Edit" loading="lazy" class="size-full object-cover transition-transform duration-700 group-hover:scale-105">
+              <span class="absolute inset-0" style="background:linear-gradient(180deg,transparent 45%,oklch(14.5% 0.006 285 / 92%))"></span>
+              <span class="absolute bottom-4 left-4 rounded-sm border border-gold/50 bg-background/70 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-gold backdrop-blur-sm">14.1K views</span>
+            </div>
+            <div class="p-6"><p class="text-[15px] leading-relaxed text-smoke transition-colors group-hover:text-ivory">Coldplay '25 Edit</p></div>
+          </a></div>
+  </div></div></section>
+
+<section id="contact" class="grain relative scroll-mt-24 overflow-hidden bg-carbon py-[calc(var(--section-y)+2rem)] text-center">
+  <div class="pointer-events-none absolute inset-0" style="background:var(--gradient-halo)" aria-hidden="true"></div>
+  <div class="shell relative">
+    <div class="reveal " style="transition-delay:0ms"><div class="mx-auto max-w-3xl">
+      <div class="flex justify-center"><div class="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-ember"><span class="h-px w-7 bg-ember"></span>Box box box</div></div>
+      <h2 class="ember-glow mt-6 font-display text-[clamp(44px,9vw,120px)] leading-[0.9]">Let's <span class="text-ember">talk</span></h2>
+      <p class="mx-auto mt-6 max-w-md text-smoke">The fastest way to reach me is below — pit lane is open.</p>
+      <div class="mt-11 flex flex-wrap items-center justify-center gap-3">
+        <a href="mailto:sbsathvik@gmail.com" class="rounded-sm bg-ember px-8 py-4 font-display text-xs uppercase tracking-[0.16em] text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5" style="box-shadow:var(--shadow-ember)">Email</a>
+        <a href="https://www.linkedin.com/in/sathvik-sreeram-06b350280" target="_blank" rel="noreferrer" class="rounded-sm border border-hairline px-8 py-4 font-display text-xs uppercase tracking-[0.16em] text-ivory transition-colors duration-300 hover:border-gold hover:text-gold">LinkedIn</a>
+        <a href="https://www.instagram.com/sathvikboseman" target="_blank" rel="noreferrer" class="rounded-sm border border-hairline px-8 py-4 font-display text-xs uppercase tracking-[0.16em] text-ivory transition-colors duration-300 hover:border-gold hover:text-gold">Instagram</a>
+      </div>
+    </div></div>
+  </div>
+</section>
+<footer class="border-t border-hairline py-10">
+  <div class="shell flex flex-col items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke md:flex-row">
+    <span>Sathvik Sreeram · Dubai, UAE</span>
+    <span>Source code &amp; live demos available on request</span>
+  </div>
+</footer>
+</main>
+<script src="/script.js" defer></script>
+</body>
+</html>
