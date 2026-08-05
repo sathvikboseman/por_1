@@ -125,4 +125,99 @@
     label.textContent = open ? 'Hide shots' : 'Show all shots';
     caret.style.transform = open ? 'rotate(180deg)' : 'none';
   });
+
+  /* mouse-tracked tilt cards */
+  if (!reduce) {
+    document.querySelectorAll('[data-tilt]').forEach(function (card) {
+      var rect, raf = null;
+      function onMove(e) {
+        rect = rect || card.getBoundingClientRect();
+        var px = (e.clientX - rect.left) / rect.width;   // 0..1
+        var py = (e.clientY - rect.top) / rect.height;   // 0..1
+        var rx = (0.5 - py) * 14;   // rotateX
+        var ry = (px - 0.5) * 16;   // rotateY
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(function () {
+          card.style.transition = 'transform .06s linear';
+          card.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-6px) scale(1.015)';
+        });
+      }
+      card.addEventListener('mouseenter', function () { rect = card.getBoundingClientRect(); });
+      card.addEventListener('mousemove', onMove);
+      card.addEventListener('mouseleave', function () {
+        if (raf) cancelAnimationFrame(raf);
+        card.style.transition = 'transform .6s var(--ease-out-expo)';
+        card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
+        rect = null;
+      });
+      window.addEventListener('resize', function () { rect = null; }, { passive: true });
+    });
+  }
+
+  /* count-up telemetry numbers */
+  (function () {
+    var nums = document.querySelectorAll('.countup');
+    if (!nums.length) return;
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        cio.unobserve(el);
+        var target = parseInt(el.textContent, 10);
+        if (isNaN(target)) return;
+        if (reduce) { el.textContent = String(target).padStart(2, '0'); return; }
+        var start = null, duration = 1100;
+        function step(ts) {
+          if (start === null) start = ts;
+          var p = Math.min(1, (ts - start) / duration);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = String(Math.round(eased * target)).padStart(2, '0');
+          if (p < 1) requestAnimationFrame(step); else el.textContent = String(target).padStart(2, '0');
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.4 });
+    nums.forEach(function (el) { cio.observe(el); });
+  })();
+
+  /* section transition wipes */
+  (function () {
+    var wipes = document.querySelectorAll('.section-wipe');
+    if (!wipes.length) return;
+    var wio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('is-in'); wio.unobserve(entry.target); }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -85% 0px' });
+    wipes.forEach(function (el) { wio.observe(el); });
+  })();
+
+  /* scroll-driven lap counter */
+  (function () {
+    var counter = document.getElementById('lap-counter'), cur = document.getElementById('lap-current');
+    if (!counter || !cur) return;
+    var laps = [
+      { id: 'top', label: '01' },
+      { id: 'about', label: '02' },
+      { id: 'education', label: '03' },
+      { id: 'experience', label: '04' },
+      { id: 'internships', label: '05' },
+      { id: 'projects', label: '06' },
+      { id: 'certifications', label: '07' },
+      { id: 'skills', label: '08' },
+      { id: 'photography', label: '09' },
+      { id: 'contact', label: 'FIN' }
+    ].map(function (l) { return { el: document.getElementById(l.id), label: l.label }; }).filter(function (l) { return l.el; });
+
+    function updateLap() {
+      counter.style.opacity = window.scrollY > window.innerHeight * 0.3 ? '1' : '0';
+      var active = laps[0];
+      laps.forEach(function (l) {
+        if (l.el.getBoundingClientRect().top <= window.innerHeight * 0.45) active = l;
+      });
+      if (cur.textContent !== active.label) cur.textContent = active.label;
+    }
+    window.addEventListener('scroll', updateLap, { passive: true });
+    updateLap();
+  })();
 })();
