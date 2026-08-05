@@ -15,8 +15,3 @@
   .tilt-card{transition:none}
   .sponsor-tile::before{transition:none}
 }
-
-/* added: 5-col sponsor grid (not in original purged Tailwind build) */
-@media (min-width:48rem){
-  .sponsor-grid.md\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
-}
