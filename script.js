@@ -180,18 +180,6 @@
     nums.forEach(function (el) { cio.observe(el); });
   })();
 
-  /* section transition wipes */
-  (function () {
-    var wipes = document.querySelectorAll('.section-wipe');
-    if (!wipes.length) return;
-    var wio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) { entry.target.classList.add('is-in'); wio.unobserve(entry.target); }
-      });
-    }, { threshold: 0, rootMargin: '0px 0px -85% 0px' });
-    wipes.forEach(function (el) { wio.observe(el); });
-  })();
-
   /* scroll-driven lap counter */
   (function () {
     var counter = document.getElementById('lap-counter'), cur = document.getElementById('lap-current');
