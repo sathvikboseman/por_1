@@ -18,10 +18,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="/styles.css">
-<script>
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
+<style>
+  @media (max-height: 780px) {
+    #top #lights { margin-bottom: 1.5rem; }
+    #top h1 { line-height: 0.86; }
+    #top #hero-rule { margin-top: 1rem; }
+    #top p.go:first-of-type { margin-top: 0.75rem; }
+    #top .go.mt-11 { margin-top: 1.5rem; }
+  }
+  @media (max-height: 640px) {
+    #top #lights { margin-bottom: 0.75rem; }
+    #top #hero-name { font-size: clamp(40px, 10vw, 120px); }
+  }
+</style>
 </head>
 <body>
 
@@ -36,7 +45,7 @@
   <span class="size-1.5 rounded-full bg-ember" style="box-shadow:0 0 8px 2px oklch(0.585 0.235 25.5 / 70%)"></span>
   <span><span id="lap-current" class="text-gold">01</span><span class="text-smoke"> / </span><span id="lap-total">09</span></span>
 </div>
-<header id="nav" class="fixed inset-x-0 top-0 z-40 border-b border-transparent bg-background/60 py-6 backdrop-blur-md transition-all duration-500">
+<header id="nav" class="fixed inset-x-0 top-0 z-40 border-b border-transparent bg-background py-6 backdrop-blur-md transition-all duration-500">
   <nav class="shell flex items-center justify-between gap-8">
     <a href="#top" class="font-display text-sm tracking-[0.22em] text-ivory transition-colors hover:text-ember">SS<span class="text-ember">.</span></a>
     <div class="hidden items-center gap-7 lg:flex">
@@ -47,13 +56,13 @@
 </header>
 <main class="bg-background text-foreground">
 
-<section id="top" class="grain relative flex min-h-svh flex-col items-center justify-center overflow-hidden px-[var(--gutter)] pt-28 text-center md:pt-32">
+<section id="top" class="grain relative flex min-h-svh flex-col items-center overflow-hidden px-[var(--gutter)] pt-28 text-center md:pt-32">
   <div class="hairline-grid absolute inset-0 opacity-[0.35]" aria-hidden="true"></div>
   <canvas id="speedlines" aria-hidden="true" class="pointer-events-none absolute inset-0 size-full opacity-45"></canvas>
   <div class="absolute inset-0" style="background:var(--gradient-halo)" aria-hidden="true"></div>
   <div class="absolute inset-x-0 bottom-0 h-56" style="background:linear-gradient(180deg,transparent,var(--background))" aria-hidden="true"></div>
   <span class="pointer-events-none absolute right-[5vw] top-[12vh] select-none font-mono text-[clamp(60px,9vw,140px)] font-bold text-ivory/[0.04]" aria-hidden="true">01</span>
-  <div class="relative z-10 flex flex-col items-center">
+  <div class="relative z-10 flex min-h-full flex-1 flex-col items-center justify-center py-6">
     <div id="lights" class="mb-12 flex gap-3"><span class="light size-5 rounded-full bg-carbon-2"></span><span class="light size-5 rounded-full bg-carbon-2"></span><span class="light size-5 rounded-full bg-carbon-2"></span><span class="light size-5 rounded-full bg-carbon-2"></span><span class="light size-5 rounded-full bg-carbon-2"></span></div>
     <h1 id="hero-name" class="ember-glow go font-display text-[clamp(56px,12vw,168px)] leading-[0.84] tracking-tight">SATHVIK<br><span class="text-ember">SREERAM</span></h1>
     <div id="hero-rule" class="mt-7 h-[3px] bg-ember" style="width:0;box-shadow:0 0 18px oklch(0.585 0.235 25.5 / 85%);transition:width 1s var(--ease-out-expo) .5s"></div>
@@ -65,7 +74,7 @@
       <a href="https://www.linkedin.com/in/sathvik-sreeram-06b350280" target="_blank" rel="noreferrer" class="rounded-sm border border-hairline px-8 py-4 font-display text-xs uppercase tracking-[0.16em] text-ivory transition-colors duration-300 hover:border-gold hover:text-gold">LinkedIn</a>
     </div>
   </div>
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-smoke">Scroll — lap 1 of 8</div>
+  <div class="relative z-10 shrink-0 pb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-smoke">Scroll — lap 1 of 8</div>
 </section>
 
 <div class="grid grid-cols-2 gap-px border-y border-hairline bg-hairline md:grid-cols-4">
@@ -172,7 +181,7 @@
               </div>
             </article>
           </div></div><div class="reveal pb-8 last:pb-0" style="transition-delay:300ms"><div class="group relative">
-            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L2</span>
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L6</span>
             <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-ember/40" aria-hidden="true"></span>
             <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
               <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
@@ -186,7 +195,7 @@
               </div>
             </article>
           </div></div><div class="reveal pb-8 last:pb-0" style="transition-delay:180ms"><div class="group relative">
-            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L3</span>
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L4</span>
             <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-ember/40" aria-hidden="true"></span>
             <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
               <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
@@ -200,7 +209,7 @@
               </div>
             </article>
           </div></div><div class="reveal pb-8 last:pb-0" style="transition-delay:60ms"><div class="group relative">
-            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L4</span>
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L2</span>
             <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-ember/40" aria-hidden="true"></span>
             <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
               <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
@@ -214,7 +223,7 @@
               </div>
             </article>
           </div></div><div class="reveal pb-8 last:pb-0" style="transition-delay:120ms"><div class="group relative">
-            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L5</span>
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L3</span>
             <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-ember/40" aria-hidden="true"></span>
             <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
               <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
@@ -228,7 +237,7 @@
               </div>
             </article>
           </div></div><div class="reveal pb-8 last:pb-0" style="transition-delay:240ms"><div class="group relative">
-            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L6</span>
+            <span class="absolute -left-[calc(2rem+1px)] top-8 z-10 flex size-8 -translate-x-1/2 items-center justify-center rounded-full border-2 bg-background font-mono text-[10px] font-bold transition-all duration-300 md:-left-[calc(3.5rem+1px)] border-ember text-ember group-hover:shadow-[0_0_24px_oklch(0.585_0.235_25.5/50%)]">L5</span>
             <span class="absolute -left-8 top-[2.75rem] hidden h-px w-8 md:-left-14 md:block md:w-14 bg-ember/40" aria-hidden="true"></span>
             <article class="surface-card p-7 hover:-translate-y-1 hover:border-ember/40 hover:shadow-[var(--shadow-ember)] md:p-9">
               <div class="grid gap-x-10 gap-y-5 md:grid-cols-[minmax(150px,180px)_1fr] md:items-start">
