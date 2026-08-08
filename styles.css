@@ -53,3 +53,13 @@ h1,h2,h3,p{overflow-wrap:anywhere;word-break:break-word}
   background:var(--ember);
   box-shadow:0 0 clamp(10px,2vw,24px) clamp(2px,.5vw,5px) oklch(0.585 0.235 25.5 / 75%);
 }
+
+/* Two independent fixed-position elements (header top, lap counter
+   bottom-right) have no way to know about each other. On a short/wide
+   viewport (a resized browser window, not just a narrow phone) there
+   isn't enough vertical room between them and they visually collide.
+   The lap counter is a non-essential progress indicator, so past this
+   point it steps aside rather than overlapping the nav. */
+@media (max-height:420px){
+  #lap-counter{display:none}
+}
