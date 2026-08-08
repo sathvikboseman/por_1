@@ -8,7 +8,8 @@
   }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
 
-  /* start lights + hero entrance */
+  /* start lights + hero entrance — now gated behind the formation-lap
+     overlay (see bottom of file) instead of auto-running on load */
   var lights = Array.prototype.slice.call(document.querySelectorAll('#lights .light'));
   function litOn(el) { el.classList.add('is-lit'); }
   function litOff(el) { el.classList.remove('is-lit'); }
@@ -18,12 +19,64 @@
     var rule = document.getElementById('hero-rule');
     if (rule) rule.style.width = 'min(560px, 70vw)';
   }
-  if (reduce) { go(); } else {
+  function startHeroSequence() {
+    if (reduce) { go(); return; }
     var n = 0;
     var seq = setInterval(function () {
       litOn(lights[n]); n++;
       if (n >= lights.length) { clearInterval(seq); setTimeout(function () { lights.forEach(litOff); go(); }, 380); }
     }, 260);
+  }
+
+  /* formation-lap loading overlay: 5 lights lit on load, extinguished
+     one by one, then the overlay fades and the hero's own sequence
+     (above) starts. Gated on real page-load readiness (window 'load',
+     covering images/fonts) with a fail-safe timeout so a slow asset can
+     never leave the page stuck behind the overlay. */
+  var flOverlay = document.getElementById('formation-lap');
+  if (flOverlay) {
+    var flLights = Array.prototype.slice.call(flOverlay.querySelectorAll('.fl-light'));
+    var flDone = false;
+
+    function flFinish() {
+      if (flDone) return;
+      flDone = true;
+      flOverlay.classList.add('is-done');
+      document.documentElement.classList.remove('js-loading');
+      startHeroSequence();
+    }
+
+    function flExtinguish() {
+      if (reduce || !flLights.length) { flFinish(); return; }
+      var n = 0;
+      var seq = setInterval(function () {
+        flLights[n].classList.remove('is-lit');
+        n++;
+        if (n >= flLights.length) { clearInterval(seq); setTimeout(flFinish, 300); }
+      }, 220);
+    }
+
+    var flStarted = false;
+    function flStart() {
+      if (flStarted) return;
+      flStarted = true;
+      flExtinguish();
+    }
+
+    if (document.readyState === 'complete') {
+      flStart();
+    } else {
+      window.addEventListener('load', flStart);
+    }
+    setTimeout(flStart, 4000); /* fail-safe: never block the page longer than this */
+
+    /* bfcache restores (back/forward navigation) can skip a fresh 'load'
+       event on some browsers — make sure the overlay can't reappear stuck */
+    window.addEventListener('pageshow', function (e) {
+      if (e.persisted) flFinish();
+    });
+  } else {
+    startHeroSequence();
   }
 
   /* typing roles */
@@ -231,6 +284,7 @@
   if (!chartWrap || !listEl || !tooltipEl || !readoutValue) return;
 
   var SKILLS = [
+    { name: 'PYTHON', value: 92, blurb: 'Primary language across ML pipelines, automation, and back-end scripting.' },
     { name: 'AUTOMATION', value: 90, blurb: 'Client-side file parsing, canvas rendering, NLP-driven document extraction.' },
     { name: 'AI / LLM', value: 93, blurb: 'OpenAI API, LangChain, RAG architecture, local LLM deployment.' },
     { name: 'JAVASCRIPT', value: 90, blurb: 'Real-time UI rendering, canvas image processing, front-end builds.' },
