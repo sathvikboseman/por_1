@@ -448,9 +448,9 @@ html.js-loading #formation-lap{display:flex}
   color:var(--ember);
 }
 .pitpass-avatar{
-  margin-top:1.1rem;
-  width:104px;
-  height:104px;
+  margin-top:1.3rem;
+  width:156px;
+  height:156px;
   border-radius:999px;
   object-fit:cover;
   border:2px solid var(--gold);
@@ -460,47 +460,22 @@ html.js-loading #formation-lap{display:flex}
 }
 .pitpass-card:hover .pitpass-avatar{filter:grayscale(0)}
 
-.pitpass-squadron{
-  margin-top:1.6rem;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.2rem;
-}
-.pitpass-squadron-label{
-  font-family:'JetBrains Mono', ui-monospace, monospace;
-  font-size:10px;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:var(--smoke);
-}
-.pitpass-squadron-num{
+.pitpass-front{justify-content:center}
+.pitpass-front-name{
+  margin-top:1.75rem;
   font-family:var(--font-display);
-  font-size:56px;
-  line-height:1;
+  font-size:27px;
+  line-height:1.08;
+  text-align:center;
   color:var(--ivory);
-  text-shadow:0 0 40px oklch(58.5% .235 25.5 / .35);
 }
-
-.pitpass-barcode{
-  margin-top:auto;
-  width:100%;
-  height:30px;
-  border-radius:2px;
-  opacity:.85;
-  background-image:repeating-linear-gradient(90deg,
-    var(--ivory) 0 1px, transparent 1px 3px,
-    var(--ivory) 3px 5px, transparent 5px 6px,
-    var(--ivory) 6px 9px, transparent 9px 11px,
-    var(--ivory) 11px 12px, transparent 12px 15px,
-    var(--ivory) 15px 17px, transparent 17px 19px);
-}
-.pitpass-code{
-  margin-top:.65rem;
+.pitpass-front-age{
+  margin-top:.55rem;
   font-family:'JetBrains Mono', ui-monospace, monospace;
-  font-size:10px;
-  letter-spacing:.18em;
-  color:var(--smoke);
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold);
 }
 
 .pitpass-name{
@@ -533,6 +508,9 @@ html.js-loading #formation-lap{display:flex}
   overflow:hidden;
 }
 .pitpass-channel{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -543,9 +521,42 @@ html.js-loading #formation-lap{display:flex}
   letter-spacing:.1em;
   text-transform:uppercase;
   color:var(--smoke);
-  transition:color .3s var(--ease-out-expo), background-color .3s var(--ease-out-expo);
+  transition:color .35s var(--ease-out-expo);
 }
-.pitpass-channel:hover{color:var(--ivory);background:var(--carbon)}
+.pitpass-channel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  opacity:0;
+  transition:opacity .4s var(--ease-out-expo);
+}
+.pitpass-channel::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(115deg, transparent 25%, oklch(100% 0 0 / .4) 48%, transparent 65%);
+  background-size:220% 100%;
+  background-position:130% 0;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s ease;
+}
+.pitpass-channel[data-brand="linkedin"]::before{background:linear-gradient(135deg, #0a66c2, #4dabf7 65%, #0a66c2)}
+.pitpass-channel[data-brand="github"]::before{background:linear-gradient(135deg, #6e40c9, #a371f7 65%, #6e40c9)}
+.pitpass-channel[data-brand="instagram"]::before{background:linear-gradient(135deg, #405de6, #5851db 25%, #833ab4 50%, #c13584 65%, #e1306c 80%, #fcaf45)}
+.pitpass-channel[data-brand="email"]::before{background:linear-gradient(135deg, #ea4335, #fbbc04 70%, #ea4335)}
+.pitpass-channel:hover{color:var(--ivory)}
+.pitpass-channel:hover::before{opacity:1}
+.pitpass-channel:hover::after{opacity:1;animation:pitpass-channel-shine 1s ease forwards}
+@keyframes pitpass-channel-shine{
+  0%{background-position:130% 0}
+  100%{background-position:-30% 0}
+}
+@media (prefers-reduced-motion:reduce){
+  .pitpass-channel:hover::after{animation:none;opacity:0}
+}
 
 .pitpass-actions{
   margin-top:auto;
