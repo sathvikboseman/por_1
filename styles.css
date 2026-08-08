@@ -58,8 +58,204 @@ h1,h2,h3,p{overflow-wrap:anywhere;word-break:break-word}
    bottom-right) have no way to know about each other. On a short/wide
    viewport (a resized browser window, not just a narrow phone) there
    isn't enough vertical room between them and they visually collide.
-   The lap counter is a non-essential progress indicator, so past this
-   point it steps aside rather than overlapping the nav. */
+   Rather than hiding the counter, it relocates below the header instead
+   of floating at the bottom — same element, same content, just anchored
+   to a spot that's always clear of the nav. */
 @media (max-height:420px){
-  #lap-counter{display:none}
+  #lap-counter{
+    top:5rem;
+    bottom:auto;
+  }
+}
+
+/* ===== Driver Ratings skills radar =====
+   Vanilla JS + inline SVG standing in for React/recharts/Framer Motion,
+   since this site has no build step or React runtime — see chat for why.
+   Tier color is resolved once in JS (tierOf) then applied as a literal
+   class (tier-elite / tier-strong / tier-solid), the same "map tier to a
+   literal class string" approach the brief asked for, just without
+   Tailwind's dynamic-class restriction driving it. */
+:root{
+  --teal:oklch(78% .17 165);
+}
+
+.dr-section{position:relative}
+.dr-ambient{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 10%, oklch(58.5% .235 25.5 / .12), transparent 65%),
+    radial-gradient(ellipse 55% 45% at 85% 90%, oklch(84.5% .155 89 / .08), transparent 65%);
+}
+
+.dr-headline{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:1.5rem;
+  margin-top:1.25rem;
+}
+.dr-readout{text-align:right}
+.dr-readout-label{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.24em;
+  color:var(--smoke);
+}
+.dr-readout-value{
+  margin-top:.35rem;
+  font-size:40px;
+  font-weight:700;
+  line-height:1;
+  color:var(--teal);
+  transition:color .25s ease;
+}
+.dr-readout-value.tier-elite{color:var(--teal)}
+.dr-readout-value.tier-strong{color:var(--gold)}
+.dr-readout-value.tier-solid{color:var(--ember)}
+.dr-readout-sub{
+  margin-top:.4rem;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  color:var(--smoke);
+}
+
+.dr-body{
+  position:relative;
+  margin-top:3rem;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:2.5rem;
+}
+@media (min-width:768px){
+  .dr-body{grid-template-columns:1.6fr 1fr;gap:3rem;align-items:start}
+}
+
+.dr-chart-wrap{position:relative;height:340px}
+@media (min-width:768px){.dr-chart-wrap{height:520px}}
+.dr-chart-wrap svg{width:100%;height:100%;overflow:visible;display:block}
+
+.dr-ring{fill:none;stroke:oklch(97% .004 95 / .14);stroke-width:1}
+.dr-spoke{stroke:oklch(97% .004 95 / .14);stroke-width:1}
+.dr-poly{fill:var(--ember);fill-opacity:.35;stroke:var(--ember);stroke-width:2.5;stroke-linejoin:round}
+.dr-dot{fill:var(--gold)}
+.dr-dot-hit,.dr-axis-hit{fill:transparent;cursor:pointer}
+.dr-axis-label{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  fill:var(--smoke);
+  cursor:pointer;
+  transition:fill .25s ease;
+}
+.dr-axis-label.tier-elite{fill:var(--teal)}
+.dr-axis-label.tier-strong{fill:var(--gold)}
+.dr-axis-label.tier-solid{fill:var(--ember)}
+
+.dr-tooltip{
+  position:absolute;
+  z-index:20;
+  left:0;
+  top:0;
+  pointer-events:none;
+  min-width:180px;
+  max-width:220px;
+  padding:.85rem 1rem;
+  border:1px solid var(--hairline);
+  border-radius:var(--radius);
+  background:var(--gradient-card);
+  box-shadow:var(--shadow-ember);
+  opacity:0;
+  transform:translate(-50%,calc(-100% - 16px));
+  transition:opacity .15s ease;
+}
+.dr-tooltip.is-visible{opacity:1}
+.dr-tooltip-title{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--smoke);
+}
+.dr-tooltip-title.tier-elite{color:var(--teal)}
+.dr-tooltip-title.tier-strong{color:var(--gold)}
+.dr-tooltip-title.tier-solid{color:var(--ember)}
+.dr-tooltip-value{margin-top:.4rem;font-size:22px;font-weight:700;color:var(--teal)}
+.dr-tooltip-blurb{margin-top:.4rem;font-size:11px;line-height:1.6;color:var(--smoke)}
+
+.dr-list{
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+  background:oklch(97% .004 95 / .09);
+  border:1px solid var(--hairline);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.dr-row{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  padding:.85rem 1rem;
+  background:var(--carbon);
+  border-left:3px solid transparent;
+  opacity:1;
+  cursor:pointer;
+  transition:background-color .2s ease, border-color .2s ease, opacity .2s ease;
+}
+.dr-list.has-active .dr-row{opacity:.4}
+.dr-list.has-active .dr-row.is-active{opacity:1}
+.dr-row.is-active.tier-elite{border-left-color:var(--teal);background:oklch(78% .17 165 / .08)}
+.dr-row.is-active.tier-strong{border-left-color:var(--gold);background:oklch(84.5% .155 89 / .08)}
+.dr-row.is-active.tier-solid{border-left-color:var(--ember);background:oklch(58.5% .235 25.5 / .08)}
+.dr-row-name{
+  flex:1 1 auto;
+  min-width:0;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--smoke);
+  overflow-wrap:anywhere;
+  transition:color .2s ease;
+}
+.dr-row.is-active .dr-row-name{color:var(--ivory)}
+.dr-meter{display:flex;gap:3px;flex:0 0 auto}
+.dr-meter span{width:3px;height:14px;border-radius:1px;background:oklch(97% .004 95 / .08)}
+.dr-meter span.is-lit.tier-elite{background:var(--teal)}
+.dr-meter span.is-lit.tier-strong{background:var(--gold)}
+.dr-meter span.is-lit.tier-solid{background:var(--ember)}
+.dr-row-value{flex:0 0 auto;width:2.25rem;text-align:right;font-size:14px;color:var(--ivory)}
+.dr-badge{
+  flex:0 0 auto;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  padding:.25rem .5rem;
+  border-radius:999px;
+  border:1px solid var(--ember);
+  color:var(--ember);
+  white-space:nowrap;
+}
+.dr-badge.tier-elite{border-color:var(--teal);color:var(--teal)}
+.dr-badge.tier-strong{border-color:var(--gold);color:var(--gold)}
+.dr-badge.tier-solid{border-color:var(--ember);color:var(--ember)}
+
+.dr-legend{
+  margin-top:2.5rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem 2rem;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  color:var(--smoke);
+  border-top:1px solid var(--hairline);
+  padding-top:1.25rem;
+}
+
+@media (max-width:767px){
+  .dr-headline{flex-direction:column;align-items:flex-start}
+  .dr-readout{text-align:left}
 }
