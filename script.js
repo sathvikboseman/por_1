@@ -49,7 +49,7 @@
       if (flStarted) return;
       flStarted = true;
       if (reduce) { flExtinguish(); return; }
-      setTimeout(flExtinguish, 150); /* hold all 5 lit before the first one goes out */
+      setTimeout(flExtinguish, 50); /* hold all 5 lit before the first one goes out */
     }
 
     if (document.readyState === 'complete') {
