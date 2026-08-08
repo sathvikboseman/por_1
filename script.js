@@ -10,8 +10,8 @@
 
   /* start lights + hero entrance */
   var lights = Array.prototype.slice.call(document.querySelectorAll('#lights .light'));
-  function litOn(el) { el.classList.add('bg-ember'); el.classList.remove('bg-carbon-2'); el.style.boxShadow = '0 0 24px 5px oklch(0.585 0.235 25.5 / 75%)'; }
-  function litOff(el) { el.classList.remove('bg-ember'); el.classList.add('bg-carbon-2'); el.style.boxShadow = 'inset 0 0 8px oklch(0 0 0 / 70%)'; }
+  function litOn(el) { el.classList.add('is-lit'); }
+  function litOff(el) { el.classList.remove('is-lit'); }
   lights.forEach(litOff);
   function go() {
     document.querySelectorAll('.go').forEach(function (el) { el.classList.add('is-in'); });
