@@ -8,31 +8,19 @@
   }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
 
-  /* start lights + hero entrance — now gated behind the formation-lap
-     overlay (see bottom of file) instead of auto-running on load */
-  var lights = Array.prototype.slice.call(document.querySelectorAll('#lights .light'));
-  function litOn(el) { el.classList.add('is-lit'); }
-  function litOff(el) { el.classList.remove('is-lit'); }
-  lights.forEach(litOff);
+  /* hero entrance — gated behind the formation-lap overlay (below)
+     instead of auto-running on load */
   function go() {
     document.querySelectorAll('.go').forEach(function (el) { el.classList.add('is-in'); });
     var rule = document.getElementById('hero-rule');
     if (rule) rule.style.width = 'min(560px, 70vw)';
   }
-  function startHeroSequence() {
-    if (reduce) { go(); return; }
-    var n = 0;
-    var seq = setInterval(function () {
-      litOn(lights[n]); n++;
-      if (n >= lights.length) { clearInterval(seq); setTimeout(function () { lights.forEach(litOff); go(); }, 380); }
-    }, 260);
-  }
 
-  /* formation-lap loading overlay: 5 lights lit on load, extinguished
-     one by one, then the overlay fades and the hero's own sequence
-     (above) starts. Gated on real page-load readiness (window 'load',
-     covering images/fonts) with a fail-safe timeout so a slow asset can
-     never leave the page stuck behind the overlay. */
+  /* formation-lap loading overlay: 5 lights lit on load, held briefly,
+     then extinguished one by one before the overlay fades and the
+     hero entrance plays. Gated on real page-load readiness (window
+     'load', covering images/fonts) with a fail-safe timeout so a slow
+     asset can never leave the page stuck behind the overlay. */
   var flOverlay = document.getElementById('formation-lap');
   if (flOverlay) {
     var flLights = Array.prototype.slice.call(flOverlay.querySelectorAll('.fl-light'));
@@ -43,7 +31,7 @@
       flDone = true;
       flOverlay.classList.add('is-done');
       document.documentElement.classList.remove('js-loading');
-      startHeroSequence();
+      go();
     }
 
     function flExtinguish() {
@@ -60,7 +48,8 @@
     function flStart() {
       if (flStarted) return;
       flStarted = true;
-      flExtinguish();
+      if (reduce) { flExtinguish(); return; }
+      setTimeout(flExtinguish, 850); /* hold all 5 lit before the first one goes out */
     }
 
     if (document.readyState === 'complete') {
@@ -76,7 +65,7 @@
       if (e.persisted) flFinish();
     });
   } else {
-    startHeroSequence();
+    go();
   }
 
   /* typing roles */

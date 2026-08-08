@@ -33,27 +33,6 @@ h1,h2,h3,p{overflow-wrap:anywhere;word-break:break-word}
    on mobile browsers where the address bar resizes the viewport. */
 .h-dvh{height:100vh;height:100dvh}
 
-/* Start lights: previously five fixed 20px dots (Tailwind `size-5`) with
-   glow set inline in px by JS. That never overlapped structurally (it's a
-   plain flex row), but it also never scaled — tiny relative to the fluid
-   hero type on a 1920px screen, and the fixed 24px/5px glow could visually
-   blob together at very small sizes. This makes both the dot and its glow
-   fluid, tied to viewport width like the rest of the hero. */
-#lights{display:flex;align-items:center;gap:clamp(.5rem,1.5vw,.75rem)}
-.light{
-  width:clamp(14px,2.6vw,22px);
-  height:clamp(14px,2.6vw,22px);
-  border-radius:9999px;
-  background:var(--carbon-2);
-  box-shadow:inset 0 0 8px oklch(0 0 0 / 70%);
-  flex-shrink:0;
-  transition:background-color .2s ease, box-shadow .2s ease;
-}
-.light.is-lit{
-  background:var(--ember);
-  box-shadow:0 0 clamp(10px,2vw,24px) clamp(2px,.5vw,5px) oklch(0.585 0.235 25.5 / 75%);
-}
-
 /* Two independent fixed-position elements (header top, lap counter
    bottom-right) have no way to know about each other. On a short/wide
    viewport (a resized browser window, not just a narrow phone) there
