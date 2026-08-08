@@ -41,7 +41,7 @@
         flLights[n].classList.remove('is-lit');
         n++;
         if (n >= flLights.length) { clearInterval(seq); flFinish(); }
-      }, 250);
+      }, 500);
     }
 
     var flStarted = false;
