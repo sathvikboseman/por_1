@@ -209,3 +209,249 @@
     updateLap();
   })();
 })();
+
+/* ===== Driver Ratings skills radar =====
+   Vanilla JS + inline SVG. recharts and Framer Motion both require a
+   React runtime and a build step, neither of which exist in this static
+   HTML/CSS/JS site, so this reproduces the same radar chart, shared
+   hover state, tooltip, tier coloring, and one-time entrance animation
+   with plain DOM/SVG APIs and CSS transitions instead.
+
+   Skill values below are the only invented numbers in this feature —
+   everything else (names, blurbs) is pulled straight from what was
+   already in the Skills section. Adjust freely, this array is the only
+   thing you need to touch to retune the chart. */
+(function () {
+  var chartWrap = document.getElementById('dr-chart');
+  var listEl = document.getElementById('dr-list');
+  var tooltipEl = document.getElementById('dr-tooltip');
+  var readoutLabel = document.getElementById('dr-readout-label');
+  var readoutValue = document.getElementById('dr-readout-value');
+  var readoutSub = document.getElementById('dr-readout-sub');
+  if (!chartWrap || !listEl || !tooltipEl || !readoutValue) return;
+
+  var SKILLS = [
+    { name: 'AUTOMATION', value: 90, blurb: 'Client-side file parsing, canvas rendering, NLP-driven document extraction.' },
+    { name: 'AI / LLM', value: 93, blurb: 'OpenAI API, LangChain, RAG architecture, local LLM deployment.' },
+    { name: 'JAVASCRIPT', value: 90, blurb: 'Real-time UI rendering, canvas image processing, front-end builds.' },
+    { name: 'DESIGN & CREATIVE', value: 95, blurb: 'Salesforce Marketing Cloud, Premiere Pro, Lightroom, event photography.' },
+    { name: 'DATA / ML', value: 86, blurb: 'scikit-learn, pandas, NumPy — feature engineering & model evaluation.' },
+    { name: 'CLOUD & SECURITY', value: 83, blurb: 'Azure AI Foundry & ML, Microsoft Security, NIST CSF 1.0/2.0.' },
+    { name: 'DEV TOOLS', value: 80, blurb: 'Git, Docker, Linux/Unix, Jupyter — daily build & release tooling.' }
+  ];
+
+  function tierOf(v) { return v >= 88 ? 'elite' : v >= 70 ? 'strong' : 'solid'; }
+  function tierClass(v) { return 'tier-' + tierOf(v); }
+
+  var overall = Math.round(SKILLS.reduce(function (sum, d) { return sum + d.value; }, 0) / SKILLS.length);
+
+  var N = SKILLS.length;
+  var SIZE = 400, CX = 200, CY = 200, R = 148;
+  var svgNS = 'http://www.w3.org/2000/svg';
+
+  function pt(i, radiusFrac) {
+    var angle = (-90 + i * (360 / N)) * Math.PI / 180;
+    var r = R * radiusFrac;
+    return [CX + r * Math.cos(angle), CY + r * Math.sin(angle)];
+  }
+
+  var svg = document.createElementNS(svgNS, 'svg');
+  svg.setAttribute('viewBox', '0 0 ' + SIZE + ' ' + SIZE);
+  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+
+  [0.2, 0.4, 0.6, 0.8, 1].forEach(function (frac) {
+    var poly = document.createElementNS(svgNS, 'polygon');
+    var pts = [];
+    for (var i = 0; i < N; i++) pts.push(pt(i, frac).join(','));
+    poly.setAttribute('points', pts.join(' '));
+    poly.setAttribute('class', 'dr-ring');
+    svg.appendChild(poly);
+  });
+
+  for (var s = 0; s < N; s++) {
+    var sp = pt(s, 1);
+    var line = document.createElementNS(svgNS, 'line');
+    line.setAttribute('x1', CX); line.setAttribute('y1', CY);
+    line.setAttribute('x2', sp[0]); line.setAttribute('y2', sp[1]);
+    line.setAttribute('class', 'dr-spoke');
+    svg.appendChild(line);
+  }
+
+  var dataPoly = document.createElementNS(svgNS, 'polygon');
+  dataPoly.setAttribute('class', 'dr-poly');
+  var centerPts = [];
+  for (var c = 0; c < N; c++) centerPts.push(CX + ',' + CY);
+  dataPoly.setAttribute('points', centerPts.join(' '));
+  svg.appendChild(dataPoly);
+
+  var finalPoints = SKILLS.map(function (d, i) { return pt(i, d.value / 100); });
+
+  var axisLabels = [];
+  var dots = [];
+  SKILLS.forEach(function (d, i) {
+    var dp = finalPoints[i];
+
+    var dotHit = document.createElementNS(svgNS, 'circle');
+    dotHit.setAttribute('cx', dp[0]); dotHit.setAttribute('cy', dp[1]); dotHit.setAttribute('r', 16);
+    dotHit.setAttribute('class', 'dr-dot-hit');
+    dotHit.dataset.index = i;
+    svg.appendChild(dotHit);
+
+    var dot = document.createElementNS(svgNS, 'circle');
+    dot.setAttribute('cx', dp[0]); dot.setAttribute('cy', dp[1]); dot.setAttribute('r', 0);
+    dot.setAttribute('class', 'dr-dot');
+    svg.appendChild(dot);
+    dots.push(dot);
+
+    var lp = pt(i, 1.2);
+    var anchor = 'middle';
+    if (lp[0] > CX + 10) anchor = 'start';
+    else if (lp[0] < CX - 10) anchor = 'end';
+
+    var label = document.createElementNS(svgNS, 'text');
+    label.setAttribute('x', lp[0]); label.setAttribute('y', lp[1]);
+    label.setAttribute('text-anchor', anchor);
+    label.setAttribute('dominant-baseline', 'middle');
+    label.setAttribute('class', 'dr-axis-label');
+    label.dataset.index = i;
+    label.textContent = d.name;
+    svg.appendChild(label);
+    axisLabels.push(label);
+
+    var labelHit = document.createElementNS(svgNS, 'circle');
+    labelHit.setAttribute('cx', lp[0]); labelHit.setAttribute('cy', lp[1]); labelHit.setAttribute('r', 26);
+    labelHit.setAttribute('class', 'dr-axis-hit');
+    labelHit.dataset.index = i;
+    svg.appendChild(labelHit);
+  });
+
+  chartWrap.insertBefore(svg, tooltipEl);
+
+  listEl.innerHTML = '';
+  var rows = [];
+  SKILLS.forEach(function (d, i) {
+    var tier = tierOf(d.value);
+    var row = document.createElement('div');
+    row.className = 'dr-row tier-' + tier;
+    row.dataset.index = i;
+
+    var name = document.createElement('div');
+    name.className = 'dr-row-name font-mono';
+    name.textContent = d.name;
+    row.appendChild(name);
+
+    var meter = document.createElement('div');
+    meter.className = 'dr-meter';
+    var lit = Math.round(d.value / 10);
+    for (var b = 0; b < 10; b++) {
+      var bar = document.createElement('span');
+      if (b < lit) bar.className = 'is-lit tier-' + tier;
+      meter.appendChild(bar);
+    }
+    row.appendChild(meter);
+
+    var val = document.createElement('div');
+    val.className = 'dr-row-value font-mono';
+    val.textContent = d.value;
+    row.appendChild(val);
+
+    var badge = document.createElement('div');
+    badge.className = 'dr-badge tier-' + tier + ' font-mono';
+    badge.textContent = tier;
+    row.appendChild(badge);
+
+    listEl.appendChild(row);
+    rows.push(row);
+  });
+
+  var tooltipTitle = tooltipEl.querySelector('.dr-tooltip-title');
+  var tooltipValue = tooltipEl.querySelector('.dr-tooltip-value');
+  var tooltipBlurb = tooltipEl.querySelector('.dr-tooltip-blurb');
+
+  function clearTiers(el) { el.classList.remove('tier-elite', 'tier-strong', 'tier-solid'); }
+
+  function setActive(i) {
+    if (i === null || i === undefined) {
+      listEl.classList.remove('has-active');
+      rows.forEach(function (r) { r.classList.remove('is-active'); });
+      axisLabels.forEach(clearTiers);
+      tooltipEl.classList.remove('is-visible');
+      readoutLabel.textContent = 'Overall pace';
+      readoutValue.textContent = overall;
+      clearTiers(readoutValue);
+      readoutValue.classList.add(tierClass(overall));
+      readoutSub.textContent = '/ 99';
+      return;
+    }
+    var d = SKILLS[i];
+    var tier = tierOf(d.value);
+
+    listEl.classList.add('has-active');
+    rows.forEach(function (r, idx) { r.classList.toggle('is-active', idx === i); });
+    axisLabels.forEach(function (l, idx) {
+      clearTiers(l);
+      if (idx === i) l.classList.add('tier-' + tier);
+    });
+
+    readoutLabel.textContent = 'Live readout';
+    readoutValue.textContent = d.value;
+    clearTiers(readoutValue);
+    readoutValue.classList.add('tier-' + tier);
+    readoutSub.textContent = '/ 99 · ' + d.name;
+
+    var dp = finalPoints[i];
+    tooltipEl.style.left = (dp[0] / SIZE * 100) + '%';
+    tooltipEl.style.top = (dp[1] / SIZE * 100) + '%';
+    tooltipTitle.textContent = d.name + ' · ' + tier;
+    clearTiers(tooltipTitle);
+    tooltipTitle.classList.add('tier-' + tier);
+    tooltipValue.textContent = d.value;
+    tooltipBlurb.textContent = d.blurb;
+    tooltipEl.classList.add('is-visible');
+  }
+  setActive(null);
+
+  svg.querySelectorAll('[data-index]').forEach(function (el) {
+    el.addEventListener('mouseenter', function () { setActive(+el.dataset.index); });
+  });
+  chartWrap.addEventListener('mouseleave', function () { setActive(null); });
+
+  rows.forEach(function (row) {
+    row.addEventListener('mouseenter', function () { setActive(+row.dataset.index); });
+  });
+  listEl.addEventListener('mouseleave', function () { setActive(null); });
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function setFinal() {
+    dataPoly.setAttribute('points', finalPoints.map(function (p) { return p.join(','); }).join(' '));
+    dots.forEach(function (dot) { dot.setAttribute('r', 4); });
+  }
+
+  if (reduceMotion) {
+    setFinal();
+  } else {
+    var animated = false;
+    function animateIn() {
+      if (animated) return;
+      animated = true;
+      var start = null;
+      var duration = 1100;
+      function step(ts) {
+        if (start === null) start = ts;
+        var t = Math.min(1, (ts - start) / duration);
+        var ease = 1 - Math.pow(1 - t, 3);
+        var pts = finalPoints.map(function (p) {
+          return (CX + (p[0] - CX) * ease) + ',' + (CY + (p[1] - CY) * ease);
+        });
+        dataPoly.setAttribute('points', pts.join(' '));
+        dots.forEach(function (dot) { dot.setAttribute('r', 4 * ease); });
+        if (t < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var drIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { animateIn(); drIo.unobserve(e.target); } });
+    }, { threshold: 0.3 });
+    drIo.observe(chartWrap);
+  }
+})();
