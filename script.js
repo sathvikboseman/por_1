@@ -1,7 +1,3 @@
-(function () {
-  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-  window.scrollTo(0, 0);
-})();
 
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -44,15 +40,16 @@
       var seq = setInterval(function () {
         flLights[n].classList.remove('is-lit');
         n++;
-        if (n >= flLights.length) { clearInterval(seq); flFinish(); }
-      }, 500);
+        if (n >= flLights.length) { clearInterval(seq); setTimeout(flFinish, 300); }
+      }, 220);
     }
 
     var flStarted = false;
     function flStart() {
       if (flStarted) return;
       flStarted = true;
-      flExtinguish();
+      if (reduce) { flExtinguish(); return; }
+      setTimeout(flExtinguish, 850); /* hold all 5 lit before the first one goes out */
     }
 
     if (document.readyState === 'complete') {
@@ -65,7 +62,7 @@
     /* bfcache restores (back/forward navigation) can skip a fresh 'load'
        event on some browsers — make sure the overlay can't reappear stuck */
     window.addEventListener('pageshow', function (e) {
-      if (e.persisted) { window.scrollTo(0, 0); flFinish(); }
+      if (e.persisted) flFinish();
     });
   } else {
     go();
@@ -499,5 +496,108 @@
       entries.forEach(function (e) { if (e.isIntersecting) { animateIn(); drIo.unobserve(e.target); } });
     }, { threshold: 0.3 });
     drIo.observe(chartWrap);
+  }
+})();
+
+/* ===== Virtual Pit Pass: flip + vCard =====
+   Card itself isn't a native <button> (it holds real links/buttons for
+   the channels and actions), so it's a div with tabindex + role=button
+   that flips on click/Enter/Space unless the click originated on one of
+   those interactive children. The two vCard actions build a plain
+   VCARD 3.0 string, then either trigger a Blob download or write it to
+   the clipboard (with an execCommand fallback for older browsers). */
+(function () {
+  var card = document.getElementById('pitpass-card');
+  if (!card) return;
+
+  function isInteractiveTarget(el) {
+    return !!(el && el.closest && el.closest('a, .pitpass-action'));
+  }
+
+  function toggleFlip() {
+    var flipped = card.classList.toggle('is-flipped');
+    card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+  }
+
+  card.addEventListener('click', function (e) {
+    if (isInteractiveTarget(e.target)) return;
+    toggleFlip();
+  });
+  card.addEventListener('keydown', function (e) {
+    if (isInteractiveTarget(e.target)) return;
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      toggleFlip();
+    }
+  });
+
+  function buildVCard() {
+    var lines = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'N:Sreeram;Sathvik;;;',
+      'FN:Sathvik Sreeram',
+      'TITLE:AI Automation & Creative Design',
+      'TEL;TYPE=CELL,VOICE:+971585464749',
+      'EMAIL;TYPE=INTERNET:sbsathvik@gmail.com',
+      'URL;TYPE=LinkedIn:https://www.linkedin.com/in/sathvik-sreeram-06b350280',
+      'URL;TYPE=GitHub:https://github.com/sathvikboseman',
+      'URL;TYPE=Instagram:https://www.instagram.com/sathvikboseman',
+      'NOTE:Portfolio: https://sathviksreeram.vercel.app',
+      'END:VCARD'
+    ];
+    return lines.join('\r\n');
+  }
+
+  var statusEl = document.getElementById('pitpass-status');
+  var statusTimer = null;
+  function flashStatus(msg) {
+    if (!statusEl) return;
+    statusEl.textContent = msg;
+    statusEl.classList.add('is-visible');
+    clearTimeout(statusTimer);
+    statusTimer = setTimeout(function () { statusEl.classList.remove('is-visible'); }, 2400);
+  }
+
+  var saveBtn = document.getElementById('pitpass-save');
+  if (saveBtn) {
+    saveBtn.addEventListener('click', function () {
+      var blob = new Blob([buildVCard()], { type: 'text/vcard;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'Sathvik_Sreeram.vcf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      flashStatus('Saved — check your downloads');
+    });
+  }
+
+  var copyBtn = document.getElementById('pitpass-copy');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+      var text = buildVCard();
+      function done(ok) { flashStatus(ok ? 'vCard copied to clipboard' : 'Copy failed — try Save instead'); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
+      } else {
+        try {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          var ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+          done(ok);
+        } catch (err) {
+          done(false);
+        }
+      }
+    });
   }
 })();

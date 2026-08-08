@@ -54,8 +54,11 @@
 
 <section id="top" class="grain relative grid min-h-svh grid-rows-[1fr_auto] overflow-hidden px-[var(--gutter)] pt-28 text-center md:pt-32">
   <div class="hairline-grid absolute inset-0 opacity-[0.35]" aria-hidden="true"></div>
+  <div class="hero-trackmesh" aria-hidden="true"></div>
   <canvas id="speedlines" aria-hidden="true" class="pointer-events-none absolute inset-0 size-full opacity-45"></canvas>
-  <div class="absolute inset-0" style="background:var(--gradient-halo)" aria-hidden="true"></div>
+  <div class="hero-beam hero-beam-a" aria-hidden="true"></div>
+  <div class="hero-beam hero-beam-b" aria-hidden="true"></div>
+  <div class="hero-halo absolute inset-0" style="background:var(--gradient-halo)" aria-hidden="true"></div>
   <div class="absolute inset-x-0 bottom-0 h-56" style="background:linear-gradient(180deg,transparent,var(--background))" aria-hidden="true"></div>
   <span class="pointer-events-none absolute right-[5vw] top-[12vh] select-none font-mono text-[clamp(60px,9vw,140px)] font-bold text-ivory/[0.04]" aria-hidden="true">01</span>
   <div class="relative z-10 flex flex-col items-center justify-center py-6">
@@ -74,10 +77,10 @@
 
 <div class="grid grid-cols-2 gap-px border-y border-hairline bg-hairline md:grid-cols-4">
   <div class="group bg-background px-6 py-14 text-center"><div class="reveal " style="transition-delay:0ms"><div class="countup font-mono text-[clamp(30px,4.5vw,52px)] font-bold leading-none text-gold transition-colors duration-300 group-hover:text-ember">02</div>
-         <div class="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke">Internships</div></div></div><div class="group bg-background px-6 py-14 text-center"><div class="reveal " style="transition-delay:80ms"><div class="countup font-mono text-[clamp(30px,4.5vw,52px)] font-bold leading-none text-gold transition-colors duration-300 group-hover:text-ember">04</div>
-         <div class="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke">Languages spoken</div></div></div><div class="group bg-background px-6 py-14 text-center"><div class="reveal " style="transition-delay:160ms"><div class="countup font-mono text-[clamp(30px,4.5vw,52px)] font-bold leading-none text-gold transition-colors duration-300 group-hover:text-ember">06</div>
-         <div class="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke">Leadership roles</div></div></div><div class="group bg-background px-6 py-14 text-center"><div class="reveal " style="transition-delay:240ms"><div class="countup font-mono text-[clamp(30px,4.5vw,52px)] font-bold leading-none text-gold transition-colors duration-300 group-hover:text-ember">09</div>
-         <div class="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke">Certifications</div></div></div>
+         <div class="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke">Internships</div></div></div><div class="group bg-background px-6 py-14 text-center"><div class="reveal " style="transition-delay:80ms"><div class="countup font-mono text-[clamp(30px,4.5vw,52px)] font-bold leading-none text-gold transition-colors duration-300 group-hover:text-ember">06</div>
+         <div class="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke">Leadership roles</div></div></div><div class="group bg-background px-6 py-14 text-center"><div class="reveal " style="transition-delay:160ms"><div class="countup font-mono text-[clamp(30px,4.5vw,52px)] font-bold leading-none text-gold transition-colors duration-300 group-hover:text-ember">09</div>
+         <div class="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke">Certifications</div></div></div><div class="group bg-background px-6 py-14 text-center"><div class="reveal " style="transition-delay:240ms"><div class="countup font-mono text-[clamp(30px,4.5vw,52px)] font-bold leading-none text-gold transition-colors duration-300 group-hover:text-ember">04</div>
+         <div class="mt-3 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke">Languages spoken</div></div></div>
 </div>
 <section id="about" class="grain relative scroll-mt-24 py-[var(--section-y)] bg-background"><div class="shell relative"><div class="reveal " style="transition-delay:0ms"><div class="flex items-start justify-between gap-10">
     <div class="min-w-0">
@@ -111,9 +114,9 @@
                 </div>
                 <div class="min-w-0">
                   <h3 class="font-display text-2xl leading-tight md:text-3xl">BITS Pilani, Dubai Campus</h3>
-                  <p class="mt-2.5 text-sm font-semibold leading-relaxed text-smoke">B.E. Computer Science Engineering</p>
+                  <p class="mt-2.5 text-sm font-semibold leading-relaxed text-smoke">B.E. Computer Science Engineering — AI/ML/DBMS/DSA</p>
                   
-                  <span class="mt-6 inline-block whitespace-nowrap rounded-sm border border-hairline px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.14em] text-smoke">AI/ML/DBMS/DSA</span>
+                  <span class="mt-6 inline-block whitespace-nowrap rounded-sm border border-hairline px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.14em] text-smoke">CSE · AI/ML</span>
                 </div>
               </div>
             </article>
@@ -146,7 +149,7 @@
                   <p class="mt-2.5 text-sm font-semibold leading-relaxed text-smoke">Secondary Education</p>
                   <p class="mt-5 max-w-2xl text-[15px] leading-[1.8] text-smoke">90% scored in Grade 10 CBSE.</p>
                   
-                  <span class="mt-6 inline-block whitespace-nowrap rounded-sm border border-hairline px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.14em] text-smoke">Science Stream</span>
+                  <span class="mt-6 inline-block whitespace-nowrap rounded-sm border border-hairline px-3 py-1.5 font-mono text-[11px] uppercase leading-none tracking-[0.14em] text-smoke">Dubai, UAE</span>
                 </div>
               </div>
             </article>
@@ -456,6 +459,44 @@
         </div>
       </div>
     </div></div>
+
+    <div class="reveal mt-16" style="transition-delay:120ms">
+      <div class="flex items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-ember"><span class="h-px w-7 bg-ember"></span>Pit wall · virtual pit pass<span class="h-px w-7 bg-ember"></span></div>
+
+      <div class="pitpass-wrap mt-9" id="pitpass-wrap">
+        <div class="pitpass-card" id="pitpass-card" tabindex="0" role="button" aria-pressed="false" aria-label="Paddock credential for Sathvik Sreeram. Press to flip.">
+          <div class="pitpass-face pitpass-front">
+            <span class="pitpass-ribbon">All-Area Access</span>
+            <span class="pitpass-hole" aria-hidden="true"></span>
+            <span class="pitpass-eyebrow-sm">Paddock Credential</span>
+            <img src="/visitingcard.jpg" alt="Sathvik Sreeram" loading="lazy" class="pitpass-avatar">
+            <div class="pitpass-squadron">
+              <span class="pitpass-squadron-label">Squadron No.</span>
+              <span class="pitpass-squadron-num">07</span>
+            </div>
+            <div class="pitpass-barcode" aria-hidden="true"></div>
+            <div class="pitpass-code">SS · 0107 · DXB</div>
+          </div>
+          <div class="pitpass-face pitpass-back">
+            <span class="pitpass-eyebrow-sm">Pit Wall Radio</span>
+            <h3 class="pitpass-name">Sathvik Sreeram</h3>
+            <a href="tel:+971585464749" class="pitpass-tel">+971 58 546 4749</a>
+            <div class="pitpass-channels">
+              <a href="https://www.linkedin.com/in/sathvik-sreeram-06b350280" target="_blank" rel="noreferrer" class="pitpass-channel">LinkedIn</a>
+              <a href="https://github.com/sathvikboseman" target="_blank" rel="noreferrer" class="pitpass-channel">GitHub</a>
+              <a href="https://www.instagram.com/sathvikboseman" target="_blank" rel="noreferrer" class="pitpass-channel">Instagram</a>
+              <a href="mailto:sbsathvik@gmail.com" class="pitpass-channel">Email</a>
+            </div>
+            <div class="pitpass-actions">
+              <button type="button" id="pitpass-save" class="pitpass-action pitpass-action-primary">Save to contacts</button>
+              <button type="button" id="pitpass-copy" class="pitpass-action pitpass-action-ghost">Copy vCard</button>
+            </div>
+            <p id="pitpass-status" class="pitpass-status" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+      <p class="pitpass-hint mt-5 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke">Tap the credential to flip</p>
+    </div>
   </div>
 </section>
 <footer class="border-t border-hairline py-10">
