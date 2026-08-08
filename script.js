@@ -40,16 +40,15 @@
       var seq = setInterval(function () {
         flLights[n].classList.remove('is-lit');
         n++;
-        if (n >= flLights.length) { clearInterval(seq); setTimeout(flFinish, 300); }
-      }, 220);
+        if (n >= flLights.length) { clearInterval(seq); flFinish(); }
+      }, 250);
     }
 
     var flStarted = false;
     function flStart() {
       if (flStarted) return;
       flStarted = true;
-      if (reduce) { flExtinguish(); return; }
-      setTimeout(flExtinguish, 850); /* hold all 5 lit before the first one goes out */
+      flExtinguish();
     }
 
     if (document.readyState === 'complete') {
