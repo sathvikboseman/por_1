@@ -47,13 +47,13 @@
 </header>
 <main class="bg-background text-foreground">
 
-<section id="top" class="grain relative flex min-h-svh flex-col items-center justify-center overflow-hidden px-[var(--gutter)] pt-28 text-center md:pt-32">
+<section id="top" class="grain relative grid min-h-svh grid-rows-[1fr_auto] overflow-hidden px-[var(--gutter)] pt-28 text-center md:pt-32">
   <div class="hairline-grid absolute inset-0 opacity-[0.35]" aria-hidden="true"></div>
   <canvas id="speedlines" aria-hidden="true" class="pointer-events-none absolute inset-0 size-full opacity-45"></canvas>
   <div class="absolute inset-0" style="background:var(--gradient-halo)" aria-hidden="true"></div>
   <div class="absolute inset-x-0 bottom-0 h-56" style="background:linear-gradient(180deg,transparent,var(--background))" aria-hidden="true"></div>
   <span class="pointer-events-none absolute right-[5vw] top-[12vh] select-none font-mono text-[clamp(60px,9vw,140px)] font-bold text-ivory/[0.04]" aria-hidden="true">01</span>
-  <div class="relative z-10 flex flex-col items-center">
+  <div class="relative z-10 flex flex-col items-center justify-center py-6">
     <div id="lights" class="mb-12"><span class="light"></span><span class="light"></span><span class="light"></span><span class="light"></span><span class="light"></span></div>
     <h1 id="hero-name" class="ember-glow go font-display text-[clamp(56px,12vw,168px)] leading-[0.84] tracking-tight">SATHVIK<br><span class="text-ember">SREERAM</span></h1>
     <div id="hero-rule" class="mt-7 h-[3px] bg-ember" style="width:0;box-shadow:0 0 18px oklch(0.585 0.235 25.5 / 85%);transition:width 1s var(--ease-out-expo) .5s"></div>
@@ -65,7 +65,7 @@
       <a href="https://www.linkedin.com/in/sathvik-sreeram-06b350280" target="_blank" rel="noreferrer" class="rounded-sm border border-hairline px-8 py-4 font-display text-xs uppercase tracking-[0.16em] text-ivory transition-colors duration-300 hover:border-gold hover:text-gold">LinkedIn</a>
     </div>
   </div>
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-smoke">Scroll — lap 1 of 8</div>
+  <div class="relative z-10 pb-8 font-mono text-[10px] uppercase tracking-[0.3em] text-smoke">Scroll — lap 1 of 8</div>
 </section>
 
 <div class="grid grid-cols-2 gap-px border-y border-hairline bg-hairline md:grid-cols-4">
