@@ -1,3 +1,7 @@
+(function () {
+  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+  window.scrollTo(0, 0);
+})();
 
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -61,7 +65,7 @@
     /* bfcache restores (back/forward navigation) can skip a fresh 'load'
        event on some browsers — make sure the overlay can't reappear stuck */
     window.addEventListener('pageshow', function (e) {
-      if (e.persisted) flFinish();
+      if (e.persisted) { window.scrollTo(0, 0); flFinish(); }
     });
   } else {
     go();
