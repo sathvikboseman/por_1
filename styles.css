@@ -259,3 +259,44 @@ h1,h2,h3,p{overflow-wrap:anywhere;word-break:break-word}
   .dr-headline{flex-direction:column;align-items:flex-start}
   .dr-readout{text-align:left}
 }
+
+/* ===== Formation-lap loading overlay =====
+   Shown only when html.js-loading is present (set by an inline script at
+   the very top of <head>, before any stylesheet/other script runs) — so
+   if JS is disabled or fails to load, this class never gets added and
+   the overlay never renders. The default state (all 5 lights lit) is
+   pure CSS, so there's no flash of the wrong state before JS runs. */
+html.js-loading{overflow:hidden}
+#formation-lap{display:none}
+html.js-loading #formation-lap{display:flex}
+
+.fl-overlay{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--background);
+  opacity:1;
+  visibility:visible;
+  transition:opacity .6s var(--ease-out-expo), visibility .6s var(--ease-out-expo);
+}
+.fl-overlay.is-done{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+.fl-lights{display:flex;gap:clamp(.85rem,3vw,1.75rem)}
+.fl-light{
+  width:clamp(24px,5vw,38px);
+  height:clamp(24px,5vw,38px);
+  border-radius:9999px;
+  background:var(--carbon-2);
+  box-shadow:inset 0 0 10px oklch(0 0 0 / 70%);
+  transition:background-color .3s ease, box-shadow .3s ease;
+}
+.fl-light.is-lit{
+  background:var(--ember);
+  box-shadow:0 0 clamp(18px,4vw,40px) clamp(4px,1vw,8px) oklch(0.585 0.235 25.5 / 70%);
+}
