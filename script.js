@@ -177,25 +177,6 @@
         hctx.beginPath(); hctx.moveTo(vpX - halfW, yy); hctx.lineTo(vpX + halfW, yy); hctx.stroke();
       }
 
-      /* glowing dashed teal center racing line — road-style dashes that
-         taper near the horizon and swell as they race toward the viewer,
-         matching the perspective of the converging lane lines above */
-      hctx.save();
-      hctx.shadowColor = 'rgba(' + TEAL + ',0.8)'; hctx.shadowBlur = 10;
-      hctx.lineCap = 'butt';
-      var centerDashCount = 26;
-      for (var cd = 0; cd < centerDashCount; cd++) {
-        var fseg = ((cd / centerDashCount) + flow) % 1;
-        var segLen = 0.014 + fseg * fseg * 0.05;
-        var f0 = fseg, f1 = Math.min(1, fseg + segLen);
-        var y0 = vpY + Math.pow(f0, 2.4) * (hh - vpY);
-        var y1 = vpY + Math.pow(f1, 2.4) * (hh - vpY);
-        hctx.strokeStyle = 'rgba(' + TEAL + ',' + (0.3 + f0 * 0.4) + ')';
-        hctx.lineWidth = 1 + f0 * f0 * 6;
-        hctx.beginPath(); hctx.moveTo(vpX, y0); hctx.lineTo(vpX, y1); hctx.stroke();
-      }
-      hctx.restore();
-
       /* 5. depth particles — drift upward, respawn at bottom past horizon */
       particles.forEach(function (p) {
         p.y -= p.speed; p.x += p.drift * 0.1;
