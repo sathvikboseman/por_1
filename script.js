@@ -1,3 +1,4 @@
+
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -11,8 +12,6 @@
      instead of auto-running on load */
   function go() {
     document.querySelectorAll('.go').forEach(function (el) { el.classList.add('is-in'); });
-    var rule = document.getElementById('hero-rule');
-    if (rule) rule.style.width = 'min(560px, 70vw)';
   }
 
   /* formation-lap loading overlay: 5 lights lit on load, held briefly,
