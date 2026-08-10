@@ -83,27 +83,153 @@
     })();
   }
 
-  /* speed lines */
-  var canvas = document.getElementById('speedlines');
-  if (canvas && !reduce) {
-    var ctx = canvas.getContext('2d'), w = 0, h = 0, lines = [];
-    function resize() {
-      w = canvas.width = canvas.offsetWidth; h = canvas.height = canvas.offsetHeight;
-      lines = [];
-      for (var i = 0; i < 42; i++) lines.push({ x: Math.random() * w, y: Math.random() * h, len: 60 + Math.random() * 220, speed: 1.5 + Math.random() * 5, alpha: 0.06 + Math.random() * 0.22, ember: Math.random() > 0.72 });
+  /* ===== Cinematic F1-broadcast hero background =====
+     Pure Canvas2D, no video/images, GPU-cheap, loops forever. Reuses the
+     existing #speedlines canvas. Layers, bottom to top: asphalt wash ->
+     red horizon glow -> drifting haze -> perspective circuit floor
+     (converging lane lines, distance markers, glowing teal center line)
+     -> depth particles -> volumetric light beams -> periodic broadcast
+     flare sweep -> vignette. devicePixelRatio capped at 1.5; particles
+     re-seed on resize; RAF is the only ongoing cost, and it's skipped
+     entirely under prefers-reduced-motion like the old speed-lines did. */
+  var hero = document.getElementById('speedlines');
+  if (hero && !reduce) {
+    var hctx = hero.getContext('2d');
+    var hw = 0, hh = 0, hFrame = 0, particles = [];
+    var RED = '232,0,45', TEAL = '51,255,87', WHITE = '245,246,247';
+
+    function seedParticles() {
+      particles = [];
+      var count = hw < 640 ? 24 : (hw < 1200 ? 55 : 90);
+      for (var i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * hw,
+          y: Math.random() * hh,
+          r: 0.6 + Math.random() * 1.7,
+          speed: 0.12 + Math.random() * 0.45,
+          drift: (Math.random() - 0.5) * 0.25,
+          near: Math.random() > 0.62
+        });
+      }
     }
-    resize(); window.addEventListener('resize', resize);
-    (function draw() {
-      ctx.clearRect(0, 0, w, h);
-      lines.forEach(function (l) {
-        var rgb = l.ember ? '232,0,45' : '255,255,255';
-        var g = ctx.createLinearGradient(l.x, l.y, l.x + l.len, l.y);
-        g.addColorStop(0, 'rgba(' + rgb + ',0)'); g.addColorStop(1, 'rgba(' + rgb + ',' + l.alpha + ')');
-        ctx.strokeStyle = g; ctx.lineWidth = l.ember ? 1.6 : 1;
-        ctx.beginPath(); ctx.moveTo(l.x, l.y); ctx.lineTo(l.x + l.len, l.y); ctx.stroke();
-        l.x += l.speed; if (l.x > w) { l.x = -l.len; l.y = Math.random() * h; }
+
+    function resizeHero() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      hw = hero.offsetWidth; hh = hero.offsetHeight;
+      hero.width = Math.round(hw * dpr); hero.height = Math.round(hh * dpr);
+      hctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      seedParticles();
+    }
+    resizeHero();
+    window.addEventListener('resize', resizeHero);
+
+    (function drawHero() {
+      hFrame++;
+      var t = hFrame / 3600;
+      var horizonY = hh * 0.4;
+      var vpX = hw * 0.5, vpY = horizonY;
+      var topSpread = hw * 0.05, botSpread = hw * 1.25;
+      var flow = (t * 0.9) % 1;
+
+      hctx.clearRect(0, 0, hw, hh);
+
+      /* 1. asphalt base wash */
+      var base = hctx.createLinearGradient(0, 0, 0, hh);
+      base.addColorStop(0, '#0e0e0e'); base.addColorStop(0.5, '#0a0a0a'); base.addColorStop(1, '#060606');
+      hctx.fillStyle = base; hctx.fillRect(0, 0, hw, hh);
+
+      /* 2. sky/horizon red glow */
+      var sky = hctx.createLinearGradient(0, 0, 0, horizonY);
+      sky.addColorStop(0, 'rgba(' + RED + ',0)'); sky.addColorStop(1, 'rgba(' + RED + ',0.32)');
+      hctx.fillStyle = sky; hctx.fillRect(0, 0, hw, horizonY);
+
+      /* 3. drifting haze blob */
+      var hx = hw * 0.5 + Math.sin(t * 6) * hw * 0.08;
+      var hy = horizonY * 0.7 + Math.cos(t * 5) * horizonY * 0.15;
+      var haze = hctx.createRadialGradient(hx, hy, 0, hx, hy, hw * 0.45);
+      haze.addColorStop(0, 'rgba(' + RED + ',0.22)'); haze.addColorStop(1, 'rgba(' + RED + ',0)');
+      hctx.fillStyle = haze; hctx.fillRect(0, 0, hw, horizonY * 1.4);
+
+      /* 4. perspective circuit floor — converging lane lines */
+      var lanesPerSide = 16;
+      for (var side = -1; side <= 1; side += 2) {
+        for (var i = 1; i <= lanesPerSide; i++) {
+          var f = i / lanesPerSide;
+          var botX = vpX + side * botSpread * f;
+          var isEdge = i >= lanesPerSide - 1;
+          hctx.beginPath();
+          hctx.moveTo(vpX + side * topSpread * f * 0.15, vpY);
+          hctx.lineTo(botX, hh);
+          hctx.strokeStyle = isEdge ? 'rgba(' + RED + ',0.35)' : 'rgba(' + WHITE + ',0.07)';
+          hctx.lineWidth = isEdge ? 2 : 1;
+          hctx.stroke();
+        }
+      }
+
+      /* horizontal distance markers — power curve compresses toward horizon */
+      var markerCount = 22;
+      for (var m = 0; m < markerCount; m++) {
+        var f2 = ((m / markerCount) + flow) % 1;
+        var yy = vpY + Math.pow(f2, 2.4) * (hh - vpY);
+        var alpha = 0.03 + f2 * 0.18;
+        var halfW = (topSpread * 0.15 + (botSpread - topSpread * 0.15) * f2) / 2;
+        hctx.strokeStyle = 'rgba(' + WHITE + ',' + alpha + ')';
+        hctx.lineWidth = 1;
+        hctx.beginPath(); hctx.moveTo(vpX - halfW, yy); hctx.lineTo(vpX + halfW, yy); hctx.stroke();
+      }
+
+      /* glowing dashed teal center racing line, flowing toward viewer */
+      hctx.save();
+      hctx.shadowColor = 'rgba(' + TEAL + ',0.8)'; hctx.shadowBlur = 12;
+      hctx.strokeStyle = 'rgba(' + TEAL + ',0.55)'; hctx.lineWidth = 3;
+      hctx.setLineDash([14, 18]); hctx.lineDashOffset = -flow * 64;
+      hctx.beginPath(); hctx.moveTo(vpX, vpY); hctx.lineTo(vpX, hh); hctx.stroke();
+      hctx.restore();
+
+      /* 5. depth particles — drift upward, respawn at bottom past horizon */
+      particles.forEach(function (p) {
+        p.y -= p.speed; p.x += p.drift * 0.1;
+        if (p.y < horizonY) { p.y = hh + Math.random() * 20; p.x = Math.random() * hw; }
+        var rgb = p.near ? RED : WHITE;
+        hctx.fillStyle = 'rgba(' + rgb + ',' + (p.near ? 0.35 : 0.18) + ')';
+        hctx.beginPath(); hctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); hctx.fill();
       });
-      requestAnimationFrame(draw);
+
+      /* 6. volumetric light beams */
+      hctx.save();
+      hctx.globalCompositeOperation = 'lighter';
+      for (var b = 0; b < 3; b++) {
+        var bx = hw * (0.2 + b * 0.3) + Math.sin(t * 4 + b) * hw * 0.05;
+        var bAlpha = Math.max(0, 0.05 + 0.04 * Math.sin(t * 8 + b * 2));
+        var beamGrad = hctx.createLinearGradient(bx, 0, bx, hh * 0.7);
+        beamGrad.addColorStop(0, 'rgba(' + WHITE + ',' + bAlpha + ')');
+        beamGrad.addColorStop(1, 'rgba(' + WHITE + ',0)');
+        hctx.fillStyle = beamGrad;
+        hctx.beginPath();
+        hctx.moveTo(bx - hw * 0.03, 0); hctx.lineTo(bx + hw * 0.03, 0);
+        hctx.lineTo(bx + hw * 0.12, hh * 0.7); hctx.lineTo(bx - hw * 0.12, hh * 0.7);
+        hctx.closePath(); hctx.fill();
+      }
+      hctx.restore();
+
+      /* 7. periodic broadcast flare — soft white band sweeps every ~9s */
+      var flareProgress = (hFrame % 540) / 540;
+      var flareAlpha = Math.max(0, Math.sin(flareProgress * Math.PI)) * 0.16;
+      if (flareAlpha > 0.002) {
+        var fx = flareProgress * hw * 1.4 - hw * 0.2;
+        var flareGrad = hctx.createLinearGradient(fx - 60, 0, fx + 60, 0);
+        flareGrad.addColorStop(0, 'rgba(' + WHITE + ',0)');
+        flareGrad.addColorStop(0.5, 'rgba(' + WHITE + ',' + flareAlpha + ')');
+        flareGrad.addColorStop(1, 'rgba(' + WHITE + ',0)');
+        hctx.fillStyle = flareGrad; hctx.fillRect(fx - 60, 0, 120, hh);
+      }
+
+      /* 8. vignette */
+      var vig = hctx.createRadialGradient(hw / 2, hh / 2, hh * 0.25, hw / 2, hh / 2, hh * 0.85);
+      vig.addColorStop(0, 'rgba(0,0,0,0)'); vig.addColorStop(1, 'rgba(0,0,0,0.72)');
+      hctx.fillStyle = vig; hctx.fillRect(0, 0, hw, hh);
+
+      requestAnimationFrame(drawHero);
     })();
   }
 
@@ -167,6 +293,37 @@
     label.textContent = open ? 'Hide shots' : 'Show all shots';
     caret.style.transform = open ? 'rotate(180deg)' : 'none';
   });
+
+  /* touch color reveal: About + Photography grayscale images.
+     :hover never fires on touch devices, so a finger-tap would otherwise
+     never remove the grayscale filter. Mirrors the pitpass touch pattern
+     above — toggle a class on touchstart, and for the photography
+     marquee also pause its scroll so the touched photo holds still long
+     enough to actually look at. Reverts after a short hold or as soon as
+     the finger moves elsewhere. */
+  (function () {
+    var supportsTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (!supportsTouch) return;
+    var revealables = document.querySelectorAll('#about .grayscale, #photography .grayscale');
+    revealables.forEach(function (img) {
+      var timer = null;
+      var track = img.closest('.marquee-track');
+      img.addEventListener('touchstart', function () {
+        img.classList.add('is-touch-active');
+        if (track) track.classList.add('is-touch-paused');
+        clearTimeout(timer);
+      }, { passive: true });
+      function release() {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          img.classList.remove('is-touch-active');
+          if (track) track.classList.remove('is-touch-paused');
+        }, 1400);
+      }
+      img.addEventListener('touchend', release, { passive: true });
+      img.addEventListener('touchcancel', release, { passive: true });
+    });
+  })();
 
   /* mouse-tracked tilt cards */
   if (!reduce) {

@@ -461,6 +461,14 @@ html.js-loading #formation-lap{display:flex}
 .pitpass-card:hover .pitpass-avatar,
 .pitpass-card.is-touch-active .pitpass-avatar{filter:grayscale(0)}
 
+/* touch equivalent for grayscale->color hover on About/Photography images —
+   :hover never fires on touch, so script.js toggles this class on
+   touchstart and removes it after a beat (see "touch color reveal" in
+   script.js). !important is needed because the base .grayscale utility
+   sets its own filter var stack that a plain class can't out-specificity. */
+.grayscale.is-touch-active{filter:none!important}
+.marquee-track.is-touch-paused{animation-play-state:paused}
+
 .pitpass-front{justify-content:center}
 .pitpass-front-name{
   margin-top:1.75rem;
