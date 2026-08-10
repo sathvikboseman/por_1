@@ -470,12 +470,14 @@ html.js-loading #formation-lap{display:flex}
   color:var(--ivory);
 }
 .pitpass-front-age{
-  margin-top:.55rem;
+  margin-top:.6rem;
   font-family:'JetBrains Mono', ui-monospace, monospace;
   font-size:11px;
-  letter-spacing:.22em;
+  line-height:1.7;
+  letter-spacing:.1em;
   text-transform:uppercase;
   color:var(--gold);
+  text-align:center;
 }
 
 .pitpass-name{

@@ -41,7 +41,7 @@
         flLights[n].classList.remove('is-lit');
         n++;
         if (n >= flLights.length) { clearInterval(seq); setTimeout(flFinish, 300); }
-      }, 500);
+      }, 220);
     }
 
     var flStarted = false;
@@ -49,7 +49,7 @@
       if (flStarted) return;
       flStarted = true;
       if (reduce) { flExtinguish(); return; }
-      setTimeout(flExtinguish, 0); /* hold all 5 lit before the first one goes out */
+      setTimeout(flExtinguish, 850); /* hold all 5 lit before the first one goes out */
     }
 
     if (document.readyState === 'complete') {
