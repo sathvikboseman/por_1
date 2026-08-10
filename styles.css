@@ -458,7 +458,8 @@ html.js-loading #formation-lap{display:flex}
   filter:grayscale(1);
   transition:filter .5s var(--ease-out-expo);
 }
-.pitpass-card:hover .pitpass-avatar{filter:grayscale(0)}
+.pitpass-card:hover .pitpass-avatar,
+.pitpass-card.is-touch-active .pitpass-avatar{filter:grayscale(0)}
 
 .pitpass-front{justify-content:center}
 .pitpass-front-name{
@@ -552,6 +553,9 @@ html.js-loading #formation-lap{display:flex}
 .pitpass-channel:hover{color:var(--ivory)}
 .pitpass-channel:hover::before{opacity:1}
 .pitpass-channel:hover::after{opacity:1;animation:pitpass-channel-shine 1s ease forwards}
+.pitpass-channel.is-touch-active{color:var(--ivory)}
+.pitpass-channel.is-touch-active::before{opacity:1}
+.pitpass-channel.is-touch-active::after{opacity:1;animation:pitpass-channel-shine 1s ease forwards}
 @keyframes pitpass-channel-shine{
   0%{background-position:130% 0}
   100%{background-position:-30% 0}

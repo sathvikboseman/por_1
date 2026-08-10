@@ -601,3 +601,32 @@
     });
   }
 })();
+
+/* ===== Virtual Pit Pass: touch equivalents for hover states =====
+   Grayscale avatar and the per-brand channel-link shine are :hover
+   effects, which touch devices never trigger. Rather than remove them,
+   fire the same class on touchstart (finger-down, ahead of the actual
+   click) so touch users get the same flash of color right as they tap
+   — the tap still flips the card / opens the link normally afterward,
+   no extra tap required. */
+(function () {
+  var supportsTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  if (!supportsTouch) return;
+
+  function armTouchActive(el, ms) {
+    var timer;
+    el.addEventListener('touchstart', function () {
+      el.classList.add('is-touch-active');
+      clearTimeout(timer);
+      timer = setTimeout(function () { el.classList.remove('is-touch-active'); }, ms);
+    }, { passive: true });
+  }
+
+  var card = document.getElementById('pitpass-card');
+  if (card) armTouchActive(card, 1000);
+
+  var channels = document.querySelectorAll('.pitpass-channel');
+  for (var i = 0; i < channels.length; i++) {
+    armTouchActive(channels[i], 1200);
+  }
+})();
